@@ -6,6 +6,7 @@ import MenuScreen from './components/MenuScreen';
 import Headcounts from './components/Headcounts';
 import Property from './components/Property';
 import QR from './components/QR';
+import Printers from './components/Printers'
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ export default function App() {
       <Stack.Screen name="Headcounts" component={Headcounts}/>
       <Stack.Screen name = "QR" component={QR}/>
       <Stack.Screen name = "Property" component={Property}/>
+      <Stack.Screen name ="Printers" component = {Printers}/>
     
     </Stack.Navigator>
   </NavigationContainer>

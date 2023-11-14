@@ -47,10 +47,12 @@ const DATA = [
    path: "../assets/images/Clock.png",
    title: 'Hourly Assignments'
   },
+
   {
    id: '5',
    path: "../assets/images/Printer.png",
-   title: 'Printers'
+   title: 'Printers',
+   screen: 'Printers'
   },
 
   {
