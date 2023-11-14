@@ -45,7 +45,8 @@ const DATA = [
   {
    id: '4',
    path: "../assets/images/Clock.png",
-   title: 'Hourly Assignments'
+   title: 'Hourly Assignments',
+   screen: 'Hourly'
   },
 
   {

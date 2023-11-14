@@ -27,7 +27,6 @@ export default function Printers ({navigation}){
     
         </SafeAreaProvider>
         )
-
 }
 
 const Item = ({ prnt_code }) => (
