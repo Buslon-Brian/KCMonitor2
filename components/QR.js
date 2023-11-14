@@ -33,12 +33,13 @@ function QR({ navigation }){
             setText(data)
             if(snap.prop_scanned.includes(data) == false){
                 store.prop_scanned.push(data)
+                console.log("SCANNED")
             }
         }
     
         else if(snap.prnt_codes.includes(data)){
             setText(data)
-            if(snap.prnt_codes.includes(data) == false){
+            if(snap.prnt_scanned.includes(data) == false){
                 store.prnt_scanned.push(data)
             }
         }
