@@ -27,7 +27,7 @@ export default function Property({navigation}){
         </View>
 
         <View style={{ backgroundColor: '#25292e', flex: 1, flexDirection: 'column' }}>
-            {Selector(setTab)}
+            {Selector(snap, setTab)}
             {List(data, Item)}
         </View>
 
@@ -41,21 +41,21 @@ export default function Property({navigation}){
     )
 }
 
-function Selector(setTab) {
+function Selector(snap, setTab) {
     return <View style={{ backgroundColor: '#25292e', flex: .15, flexDirection: 'row' }}>
 
         <TouchableOpacity
             style={{ backgroundColor: '#333940', flex: .5, margin: '1%', alignItems: 'center', justifyContent: 'center' }}
             onPress={() => setTab("unscanned")}
         >
-            <Text style={{ color: 'white', fontSize: 25 }}> Unscanned Codes</Text>
+            <Text style={{ color: 'white', fontSize: 25 }}> Unscanned Codes ({snap.prop_codes.length - snap.prop_scanned.length})</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
             style={{ backgroundColor: '#333940', flex: .5, margin: '1%', alignItems: 'center', justifyContent: 'center' }}
             onPress={() => setTab("scanned")}
         >
-            <Text style={{ color: 'white', fontSize: 25 }}> Scanned Codes</Text>
+            <Text style={{ color: 'white', fontSize: 25 }}> Scanned Codes ({snap.prop_scanned.length})</Text>
         </TouchableOpacity>
     </View>;
 }
