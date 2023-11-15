@@ -4,6 +4,9 @@ import styles from "./styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
+
+
+
 export default function Hourly({navigation}){
     return (
         <SafeAreaProvider>
@@ -21,7 +24,10 @@ export default function Hourly({navigation}){
                 <TouchableOpacity style = {{backgroundColor:'#333940', marginHorizontal:10, flex: 1}}/>
                 <TouchableOpacity style = {{backgroundColor:'#333940', marginHorizontal:10, flex: 1}}/>
             </View>
-
+            
+            <View style = {{flex: .4}}>
+                <Text style = {{ color: 'white', fontSize: 25, marginVertical: 30, marginHorizontal: 10}}> Current Position: Placeholder </Text>
+            </View>
         </View>
 
         <TouchableOpacity
