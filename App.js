@@ -1,13 +1,14 @@
-import * as React from 'react';
-import { NavigationContainer} from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import LoginScreen from './components/LoginScreen';
-import MenuScreen from './components/MenuScreen';
-import Headcounts from './components/Headcounts';
-import Property from './components/Property';
-import QR from './components/QR';
+import * as React from 'react'
+import { NavigationContainer} from '@react-navigation/native'
+import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import LoginScreen from './components/LoginScreen'
+import MenuScreen from './components/MenuScreen'
+import Headcounts from './components/Headcounts'
+import Property from './components/Property'
+import QR from './components/QR'
 import Printers from './components/Printers'
 import Hourly from './components/HourlyAssignments'
+import Keys from './components/Keys'
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
       <Stack.Screen name = "Property" component={Property}/>
       <Stack.Screen name ="Printers" component = {Printers}/>
       <Stack.Screen name ="Hourly" component = {Hourly}/>
+      <Stack.Screen name ="Keys" component = {Keys}/>
     
     </Stack.Navigator>
   </NavigationContainer>

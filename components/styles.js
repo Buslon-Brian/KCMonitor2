@@ -48,6 +48,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
       },
 
+      overlay: {
+        ...StyleSheet.absoluteFillObject,
+      },
+
       unr_blue:{
         color: '#041e42'
       },

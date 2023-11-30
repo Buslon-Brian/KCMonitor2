@@ -59,19 +59,14 @@ const DATA = [
   {
    id: '6',
    path: "../assets/images/Key.png",
-   title: 'Keys'
+   title: 'Keys',
+   screen: 'Keys'
   },
 
   {
    id: '7',
    path: "../assets/images/Tickets.png",
    title: 'Maintenance Tickets'
-  },
-
-  {
-   id: '8',
-   path: "../assets/images/Restroom.png",
-   title: 'Restrooms'
   },
 
   {
