@@ -1,4 +1,4 @@
-import {View, Text, FlatList, Image, TouchableOpacity} from 'react-native';
+import {View, Text, FlatList, Image, TouchableOpacity, Linking} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
@@ -66,13 +66,8 @@ const DATA = [
   {
    id: '7',
    path: "../assets/images/Tickets.png",
-   title: 'Maintenance Tickets'
-  },
-
-  {
-   id: '10',
-   path: "../assets/images/Check.png",
-   title: 'Projects'
+   title: 'Maintenance Tickets',
+   url: 'https://unr.teamdynamix.com/TDClient/Requests/ServiceDet?ID=27661'
   },
 
   {
@@ -84,10 +79,21 @@ const DATA = [
 
 ];
  
-const Item = ({title, path, screen, navigation}) => (
+const Item = ({title, path, screen, navigation, url}) => (
  <TouchableOpacity 
    style={styles.item} 
-   onPress={() => navigation.navigate(screen)}>
+   onPress={() => {
+    if (url) {
+      // Open URL if available
+      Linking.openURL(url).catch((err) =>
+        console.error('Error opening URL:', err)
+      );
+    } else {
+      // Navigate to screen if no URL
+      navigation.navigate(screen);
+    }
+  }}
+  >
 
    <Image 
      style = {styles.image} 

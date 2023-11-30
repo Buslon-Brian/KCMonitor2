@@ -3,8 +3,10 @@ import {proxy} from  'valtio'
 export const store = proxy({
     username: "TestUser",
     cur_assign: 'N/A',
+    cur_keys: 'N/A',
     cur_floor: 5,
     floor_count: [0, 0 ,0 ,0 ,0, 0],
+    
     prop_codes: ["PR:4 Rotunda", "PR:4 S Restroom", "PR:4 S Stacks", "PR:4 Tower", "PR:5 E Stacks", "PR:5 N Restroom", "PR:5 N W Corner",
     "PR:5 Roof Access", "PR:5 S Restroom", "PR:5 S Stacks", "PR:5 Tower", "PR:Loading Docks", "PR:Popular Reading", "PR:Reference Area",
     "PR:1 Back Stairs", "PR:1 Garden", "PR:1 Main Gate", "PR:1 N Restroom", "PR:1 Stairs B", "PR:1 Viewing Room", "PR:2 Back Stairs",

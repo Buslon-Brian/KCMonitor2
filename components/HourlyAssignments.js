@@ -94,7 +94,7 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
   
           <View style={{ ...styles.overlay, backgroundColor: isModalVisible ? 'rgba(0, 0, 0, 0.7)' : 'transparent' }} />
   
-          <View style={{ backgroundColor: '#25292e', width: '25%', height: '25%', margin: '100', flexDirection: 'column' }}>
+          <View style={{ backgroundColor: '#25292e', width: '66%', height: '25%', margin: '100', flexDirection: 'column' }}>
             
             <View style={{ flex: 1, padding: 5 }}>
               <Text style={{ color: 'white', fontSize: 22 }}> You are about to set your hourly assignment to:</Text>
@@ -110,14 +110,14 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
                 style={{ flex: 1, color: 'white', backgroundColor: '#041e42', margin: 5, justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => handleOkPress()}
               >
-                OK
+                <Text style = {{color: 'white'}}> OK </Text>
               </TouchableOpacity>
   
               <TouchableOpacity
                 style={{ flex: 1, color: 'white', backgroundColor: '#333940', margin: 5, justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => handleCancelPress()}
               >
-                Cancel
+                <Text style = {{color: 'white'}}> Cancel </Text>
               </TouchableOpacity>
             </View>
           
