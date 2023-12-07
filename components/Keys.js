@@ -20,6 +20,7 @@ export default function Keys({navigation}){
     const handleOkPress = () => {
         toggleModal()
         setKey(snap.cur_keys)
+        navigation.navigate('Menu')
     }
 
     const handleCancelPress = () => {toggleModal()}

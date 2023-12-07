@@ -67,7 +67,6 @@ const DATA = [
    id: '7',
    path: "../assets/images/Tickets.png",
    title: 'Maintenance Tickets',
-   url: 'https://unr.teamdynamix.com/TDClient/Requests/ServiceDet?ID=27661'
   },
 
   {
@@ -79,13 +78,12 @@ const DATA = [
 
 ];
  
-const Item = ({title, path, screen, navigation, url}) => (
+const Item = ({title, path, screen, navigation}) => (
  <TouchableOpacity 
    style={styles.item} 
    onPress={() => {
-    if (url) {
-      // Open URL if available
-      Linking.openURL(url).catch((err) =>
+    if (title == 'Maintenance Tickets') {
+      Linking.openURL('https://unr.teamdynamix.com/TDClient/Requests/ServiceDet?ID=27661').catch((err) =>
         console.error('Error opening URL:', err)
       );
     } else {

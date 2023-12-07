@@ -24,7 +24,7 @@ function LoginScreen({ navigation }) {
   
       <TouchableOpacity 
         style = {{backgroundColor: '#333940', margin: 15, paddingVertical:10, paddingHorizontal: 55, alignItems: 'center', marginTop: 35}} 
-        onPress={() => navigation.navigate('Menu')}
+        onPress={() => navigation.navigate('Keys')}
       >
         <Text style = {{color: '#fff', fontSize: 16}}> Continue </Text>
       </TouchableOpacity>
