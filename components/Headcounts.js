@@ -6,11 +6,7 @@ import { store } from '../stores/store';
 import styles from './styles';
 
 export default function Headcounts({ navigation }){
-    let num = 30
-    let user = "Brian"
-    const snap = useSnapshot(store)
-
-    
+    const snap = useSnapshot(store) 
     KeepState()
 
     return(
@@ -28,7 +24,7 @@ export default function Headcounts({ navigation }){
                 </View>
 
             </View>
-            {TempBackBttn(navigation)}
+            {TempBackBttn(navigation, snap)}
     
            
         </SafeAreaProvider>
@@ -129,10 +125,36 @@ function SubmitBttn(user, num) {
         </TouchableOpacity>;
 }
 
-function TempBackBttn(navigation) {
+function submit_floors(snap){
+ 
+    const formEle = {
+        "Floor1": check(snap.floor_count[0]),
+        "Floor2": check(snap.floor_count[1]),
+        "Floor3": check(snap.floor_count[2]),
+        "Floor4": check(snap.floor_count[3]),
+        "Floor5": check(snap.floor_count[4]),
+    }
+
+    function check(floor){
+        if (floor == 0){
+            return "0"
+        }
+        else return floor
+    }
+    const re = fetch('https://sheetdb.io/api/v1/hn07xtbdqi48h', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formEle),
+    });
+    
+}
+
+function TempBackBttn(navigation, snap) {
     return <TouchableOpacity
         style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
-        onPress={() => navigation.navigate('Menu')}
+        onPress={() => submit_floors(snap)}
     >
     </TouchableOpacity>;
 }

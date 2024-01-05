@@ -13,6 +13,7 @@ export const store = proxy({
     "PR:2 N Entrance", "PR:2 N Restroom", "PR:2 S Restroom", "PR:2 Stairs F", "PR:3 Back Stairs", "PR:3 Basque Back", "PR:3 Basque Lobby",
     "PR:3 N Overlook", "PR:3 N Restroom", "PR:3 S Restroom", "PR:3 S Stacks", "PR:3 Tower", "PR:4 Back Stairs", "PR:4 Carrels", 
     "PR:4 E Stacks", "PR:4 N Restroom", "PR:4 N Stacks" ],
+    
     prnt_codes:["Print:2 North 1", "Print:2 North 2", "Print:2 South 1", "Print:2 South 2", "Print:3 North West", "Print:3 South East",
     "Print:3 South West", "Print:4 North East", "Print:4 North West", "Print:4 South East", "Print:4 South West", "Print:5 North",
     "Print:5 South"],
