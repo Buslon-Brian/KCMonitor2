@@ -4,7 +4,7 @@ import styles from "../components/styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
-
+import Header_c from '../components/Header';
 
 export default function Keys({navigation}){
     const snap = useSnapshot(store)
@@ -26,9 +26,7 @@ export default function Keys({navigation}){
     const handleCancelPress = () => {toggleModal()}
     return (
         <SafeAreaProvider>
-            <View style={[styles.header_bar, { alignItems: 'flex-start' }]}>
-                <Text style={{ color: 'white', fontSize: 32, marginLeft: "3%" }}> Keys</Text>
-            </View>
+            <Header_c title = "Keys" navigation = {navigation}/>
             
             <View style = {{backgroundColor: '#25292e', flex: 1}}>
                 <View style = {{flex: .1, justifyContent: 'center'}}> 
@@ -43,13 +41,6 @@ export default function Keys({navigation}){
                 </View>
 
             </View>
-        
-
-            <TouchableOpacity
-            style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => navigation.navigate('Menu')}
-            >
-            </TouchableOpacity>
         </SafeAreaProvider>
     )
 }

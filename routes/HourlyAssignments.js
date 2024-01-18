@@ -4,6 +4,7 @@ import styles from "../components/styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
+import Header_c from '../components/Header';
 
 export default function Hourly({navigation}){
     const snap = useSnapshot(store)
@@ -28,9 +29,7 @@ export default function Hourly({navigation}){
     return (
         <SafeAreaProvider>
 
-            <View style={[styles.header_bar, { alignItems: 'flex-start' }]}>
-                <Text style={{ color: 'white', fontSize: 32, marginLeft: "3%" }}> Hourly Assignments </Text>
-            </View>
+            <Header_c title = "Property Rounds" navigation = {navigation}/>
 
             <View style = {{backgroundColor: '#25292e', flex: 1}}>
 

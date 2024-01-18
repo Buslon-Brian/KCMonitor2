@@ -9,10 +9,8 @@ import Header_c from '../components/Header';
 export default function Headcounts({ navigation }){
     const snap = useSnapshot(store) 
     KeepState()
-
     return(
         <SafeAreaProvider>
-            
             <Header_c title = "Headcounts" navigation = {navigation}/>
             <View style = {{backgroundColor: '#25292e', flex: 1, flexDirection: 'row'}}>
                 
@@ -26,8 +24,6 @@ export default function Headcounts({ navigation }){
 
             </View>
             {SubmitBttn(snap)}
-    
-           
         </SafeAreaProvider>
     );
 }
@@ -135,21 +131,9 @@ function SubmitBttn(snap) {
         onPress={() => submit_floors(snap)}
     >
     </TouchableOpacity>;
-
-    function Header({}) {
-      return (<View style={[styles.header_bar, {
-  alignItems: 'flex-start'
-}]}>
-                <Text style={{
-    color: 'white',
-    fontSize: 32,
-    marginLeft: "3%"
-  }}> Headcounts </Text>
-            </View>);
-    }
-  }
+}
  
-  /*
+/*
 function SubmitBttn(user, num) {
         return <TouchableOpacity
             style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}

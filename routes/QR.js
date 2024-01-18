@@ -6,6 +6,7 @@ import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../components/styles';
+import Header_c from '../components/Header';
 
 function QR({ navigation }){
     const [hasPermission, setHasPermission] = useState(null)
@@ -66,9 +67,7 @@ function QR({ navigation }){
 
     return(
         <SafeAreaProvider>
-            <View style={[styles.header_bar, { alignItems: 'flex-start' }]}>
-                    <Text style={{ color: 'white', fontSize: 32, marginLeft: "3%" }}> QR Code Scanner </Text>
-            </View>
+            <Header_c title = "QR" navigation = {navigation}/>
             
             <View style ={[styles.container, {flex: .15, justifyContent: 'flex-end'}]}>
                 <Text style= {{fontSize: 32, color: 'white'}}> {text} </Text>

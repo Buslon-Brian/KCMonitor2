@@ -4,6 +4,7 @@ import styles from "../components/styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
+import Header_c from '../components/Header';
 
 export default function Printers ({navigation}){
     const snap = useSnapshot(store)
@@ -11,9 +12,7 @@ export default function Printers ({navigation}){
     KeepState()
     return(
         <SafeAreaProvider>
-            <View style={[styles.header_bar, { alignItems: 'flex-start' }]}>
-                <Text style={{ color: 'white', fontSize: 32, marginLeft: "3%" }}> Printers </Text>
-            </View>
+            <Header_c title = "Printers" navigation = {navigation}/>
     
             <View style={{ backgroundColor: '#25292e', flex: 1, flexDirection: 'column' }}>
                 {List(data, Item)}
