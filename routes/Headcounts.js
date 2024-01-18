@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
+import Header_c from '../components/Header';
 
 export default function Headcounts({ navigation }){
     const snap = useSnapshot(store) 
@@ -12,7 +13,7 @@ export default function Headcounts({ navigation }){
     return(
         <SafeAreaProvider>
             
-            {Header}
+            <Header_c title = "Headcounts" navigation = {navigation}/>
             <View style = {{backgroundColor: '#25292e', flex: 1, flexDirection: 'row'}}>
                 
                 <View style = {{flex: .5}}>
@@ -24,7 +25,7 @@ export default function Headcounts({ navigation }){
                 </View>
 
             </View>
-            {TempBackBttn(navigation, snap)}
+            {SubmitBttn(snap)}
     
            
         </SafeAreaProvider>
@@ -50,10 +51,6 @@ function KeepState() {
         }
       };
 }
-
-const Header = <View style={[styles.header_bar, { alignItems: 'flex-start' }]}>
-    <Text style={{ color: 'white', fontSize: 32, marginLeft: "3%" }}> Headcounts </Text>
-</View>;
 
 function FloorSelector(snap) {
     return <View style={{ flex: .7 }}>
@@ -106,25 +103,6 @@ const FloorBttn=({
     </TouchableOpacity>
 )
 
-function SubmitBttn(user, num) {
-        return <TouchableOpacity
-            style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => {
-                fetch("https://hooks.slack.com/services/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", {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        "text": `${user} scanned ${num} QR Codes`
-                    })
-                });
-            } }
-        >
-            <Text style={{ color: 'white', fontSize: 23 }}> Submit </Text>
-        </TouchableOpacity>;
-}
-
 function submit_floors(snap){
  
     const formEle = {
@@ -151,10 +129,43 @@ function submit_floors(snap){
     
 }
 
-function TempBackBttn(navigation, snap) {
+function SubmitBttn(snap) {
     return <TouchableOpacity
         style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
         onPress={() => submit_floors(snap)}
     >
     </TouchableOpacity>;
+
+    function Header({}) {
+      return (<View style={[styles.header_bar, {
+  alignItems: 'flex-start'
+}]}>
+                <Text style={{
+    color: 'white',
+    fontSize: 32,
+    marginLeft: "3%"
+  }}> Headcounts </Text>
+            </View>);
+    }
+  }
+ 
+  /*
+function SubmitBttn(user, num) {
+        return <TouchableOpacity
+            style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
+            onPress={() => {
+                fetch("https://hooks.slack.com/services/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", {
+                    method: "POST",
+                    headers: {
+                        "Content-type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "text": `${user} scanned ${num} QR Codes`
+                    })
+                });
+            } }
+        >
+            <Text style={{ color: 'white', fontSize: 23 }}> Submit </Text>
+        </TouchableOpacity>;
 }
+  */
