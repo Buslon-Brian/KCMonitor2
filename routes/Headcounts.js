@@ -5,6 +5,7 @@ import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
+import SubmitBttnfn from '../components/SubmitBttn';
 
 export default function Headcounts({ navigation }){
     const snap = useSnapshot(store) 
@@ -23,7 +24,7 @@ export default function Headcounts({ navigation }){
                 </View>
 
             </View>
-            {SubmitBttn(snap)}
+            <SubmitBttnfn fn = {submit_floors(snap)}/>
         </SafeAreaProvider>
     );
 }
@@ -125,13 +126,6 @@ function submit_floors(snap){
     
 }
 
-function SubmitBttn(snap) {
-    return <TouchableOpacity
-        style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
-        onPress={() => submit_floors(snap)}
-    >
-    </TouchableOpacity>;
-}
  
 /*
 function SubmitBttn(user, num) {

@@ -51,18 +51,6 @@ const styles = StyleSheet.create({
       overlay: {
         ...StyleSheet.absoluteFillObject,
       },
-
-      unr_blue:{
-        color: '#041e42'
-      },
-
-      b_gray:{
-        color: '#25292e'
-      },
-
-      bttn_color:{
-        backgroundColorcolor: '#333940'
-      },
   });
 
 export default styles

@@ -7,6 +7,7 @@ import { store } from '../stores/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
+import Submitbttnfn from '../components/SubmitBttn'
 
 function QR({ navigation }){
     const [hasPermission, setHasPermission] = useState(null)
@@ -83,11 +84,7 @@ function QR({ navigation }){
                 <Text style= {{fontSize: 32, color: 'white'}}> Scanned {snap.prop_scanned.length}/39 Codes </Text>
             </View>
 
-            <TouchableOpacity
-                style={{ backgroundColor: "#333940", flex: .1, alignItems: 'center', justifyContent: 'center' }}
-                onPress={() => navigation.navigate('Menu')}
-            >
-            </TouchableOpacity>
+            <Submitbttnfn/>
         </SafeAreaProvider>
     )
 }

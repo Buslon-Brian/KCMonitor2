@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import Header_c from '../components/Header';
+import SubmitBttnfn from '../components/SubmitBttn';
 
 export default function Keys({navigation}){
     const snap = useSnapshot(store)
