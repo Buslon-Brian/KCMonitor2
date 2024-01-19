@@ -1,4 +1,4 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSnapshot } from 'valtio';
@@ -60,31 +60,46 @@ function FloorSelector(snap) {
 }
 
 function IteratorBttns() {
-      return (<>
-    <View style={{
-    backgroundColor: '#333940',
-    flex: .25,
-    marginHorizontal: '1%',
-    marginTop: '1%',
-    marginBottom: '.5%'}}>
-    </View>
+    return (
+    <>
+        <View style={{
+            backgroundColor: '#333940',
+            flex: .25,
+            marginHorizontal: '1%',
+            marginTop: '1%',
+            marginBottom: '.5%'
+            }}
+        >
+        </View>
     
-    <TouchableOpacity style={{
-    backgroundColor: '#041e42',
-    flex: 1,
-    marginHorizontal: '1%',
-    marginVertical: '.5%'
-    }} onPress={()=> store.floor_count[store.cur_floor - 1] += 1} 
-    />
+        <TouchableOpacity style={{
+            backgroundColor: '#041e42',
+            flex: 1,
+            marginHorizontal: '1%',
+            marginVertical: '.5%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            }} 
+        onPress={()=> store.floor_count[store.cur_floor - 1] += 1} 
+        >
+            <Image style = {{width: 100, height: 100, marginLeft: 5,}} source = {require('../assets/images/up_arrow.png')}/>
+        </TouchableOpacity>
                     
-    <TouchableOpacity style={{
-    backgroundColor: '#333940',
-    flex: .53,
-    marginHorizontal: '1%',
-    marginVertical: '.5%',
-    marginBottom: '1%'
-    }} onPress={()=>{if(store.floor_count[store.cur_floor - 1] != 0){store.floor_count[store.cur_floor - 1] -= 1}}}/> 
-    </>);
+        <TouchableOpacity style={{
+        backgroundColor: '#333940',
+        flex: .53,
+        marginHorizontal: '1%',
+        marginVertical: '.5%',
+        marginBottom: '1%',
+        justifyContent: 'center',
+        alignItems: 'center',
+        }} 
+        onPress={()=>{if(store.floor_count[store.cur_floor - 1] != 0){store.floor_count[store.cur_floor - 1] -= 1}}}
+        > 
+            <Image style = {{width: 100, height: 100, marginLeft: 5,}} source = {require('../assets/images/down_arrow.png')}/>
+        </TouchableOpacity>
+    </>
+    )
 }
   
 const FloorBttn=({
