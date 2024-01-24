@@ -9,6 +9,7 @@ import QR from './routes/QR'
 import Printers from './routes/Printers'
 import Hourly from './routes/HourlyAssignments'
 import Keys from './routes/Keys'
+import Settings from './routes/Settings'
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,7 @@ export default function App() {
       <Stack.Screen name ="Printers" component = {Printers}/>
       <Stack.Screen name ="Hourly" component = {Hourly}/>
       <Stack.Screen name ="Keys" component = {Keys}/>
+      <Stack.Screen name ="Settings" component = {Settings}/>
     
     </Stack.Navigator>
   </NavigationContainer>
