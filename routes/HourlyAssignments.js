@@ -46,7 +46,7 @@ export default function Hourly({navigation}){
                 </View>
 
             </View>
-            <SubmitBttnfn/>
+            <SubmitBttnfn fn = {()=> {log_assign(snap)}}/>
         </SafeAreaProvider>
     )
 }
@@ -143,3 +143,12 @@ function KeepState() {
       };
 }
   
+function log_assign(snap) {
+  console.log("exec")
+  fetch("https://hooks.slack.com/services/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", {
+                  method: "POST",
+                  body: JSON.stringify({
+                      "text": `${snap.username} is on ${snap.cur_assign}`
+                  })
+              });
+}
