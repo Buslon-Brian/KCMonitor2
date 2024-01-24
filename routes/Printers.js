@@ -19,7 +19,7 @@ export default function Printers ({navigation}){
                 {List(data, Item)}
             </View>
     
-            <SubmitBttnfn/>
+            <SubmitBttnfn fn = {() => {submit_prnt(snap)}}/>
     
         </SafeAreaProvider>
         )
@@ -69,4 +69,14 @@ function KeepState() {
           // error reading value
         }
       };
+}
+
+function submit_prnt(snap) {
+  console.log("exec")
+  fetch("https://hooks.slack.com/services/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", {
+                  method: "POST",
+                  body: JSON.stringify({
+                      "text": `${snap.username} scanned ${snap.prnt_scanned.length} printers`
+                  })
+              });
 }
