@@ -93,7 +93,12 @@ function IteratorBttns(value, setValue) {
         <View style ={{flex: .2, marginHorizontal: '1%', marginBottom: '.5%', marginTop: '1%', zIndex: 2}}>
         <DropDownPicker
             placeholder = "Select a time"
-            listMode = "SCROLLVIEW"
+            listMode = "MODAL"
+            modalAnimationType="slide"
+            modalTitle= "Select a time"
+            theme = "DARK"
+            style = {{backgroundColor: '#25292e'}}
+            modalContentContainerStyle={{backgroundColor: "#25292e",}}
             open={open}
             value={value}
             items={items}
@@ -169,23 +174,3 @@ function submit_floors(snap, time){
 }
 
  
-/*
-function SubmitBttn(user, num) {
-        return <TouchableOpacity
-            style={{ backgroundColor: "#333940", flex: .09, alignItems: 'center', justifyContent: 'center' }}
-            onPress={() => {
-                fetch("https://hooks.slack.com/services/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", {
-                    method: "POST",
-                    headers: {
-                        "Content-type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        "text": `${user} scanned ${num} QR Codes`
-                    })
-                });
-            } }
-        >
-            <Text style={{ color: 'white', fontSize: 23 }}> Submit </Text>
-        </TouchableOpacity>;
-}
-  */
