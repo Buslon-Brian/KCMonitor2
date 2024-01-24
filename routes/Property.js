@@ -30,7 +30,7 @@ export default function Property({navigation}){
             {List(data, Item)}
         </View>
 
-        <SubmitBttnfn fn = {()=> {submit_props(snap)}}/>
+        <SubmitBttnfn fn = {()=> {submit_props(snap, store)}}/>
 
     </SafeAreaProvider>
     )
@@ -91,7 +91,7 @@ function KeepState() {
       };
 }
 
-function submit_props(snap) {
+function submit_props(snap, store) {
     console.log("exec")
     fetch("https://hooks.slack.com/services/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", {
                     method: "POST",
@@ -99,4 +99,9 @@ function submit_props(snap) {
                         "text": `${snap.username} scanned ${snap.prop_scanned.length} QR Codes`
                     })
                 });
+
+    for(let i = 0; i < snap.prop_scanned.length; i++){
+        store.prop_codes.push(snap.prop_scanned[i])
+        store.prop_scanned.pop()
+    }
 }

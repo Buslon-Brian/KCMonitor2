@@ -19,7 +19,7 @@ export default function Printers ({navigation}){
                 {List(data, Item)}
             </View>
     
-            <SubmitBttnfn fn = {() => {submit_prnt(snap)}}/>
+            <SubmitBttnfn fn = {() => {submit_prnt(snap, store)}}/>
     
         </SafeAreaProvider>
         )
@@ -45,7 +45,7 @@ function List(data, Item) {
     return <View style={{ flex: 1 }}>
         <FlatList
             data={data}
-            renderItem={({ item }) => <Item prop_code={item} />}
+            renderItem={({ item }) => <Item prnt_code={item} />}
             keyExtractor={(item, index) => index.toString()} />
     </View>
     }
@@ -79,4 +79,9 @@ function submit_prnt(snap) {
                       "text": `${snap.username} scanned ${snap.prnt_scanned.length} printers`
                   })
               });
+
+  for(let i = 0; i < snap.prnt_scanned.length; i++){
+    store.prnt_codes.push(snap.prnt_scanned[i])
+    store.prnt_scanned.pop()
+  }
 }
