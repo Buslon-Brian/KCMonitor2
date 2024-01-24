@@ -84,7 +84,6 @@ function QR({ navigation }){
                 <Text style= {{fontSize: 32, color: 'white'}}> Scanned {snap.prop_scanned.length}/39 Codes </Text>
             </View>
 
-            <Submitbttnfn/>
         </SafeAreaProvider>
     )
 }
