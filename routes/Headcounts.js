@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import {View, Text, TouchableOpacity, Image} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -6,9 +7,12 @@ import { store } from '../stores/store';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
+import DropDownPicker from 'react-native-dropdown-picker';
 
 export default function Headcounts({ navigation }){
-    const snap = useSnapshot(store) 
+    const snap = useSnapshot(store)
+    const [value, setValue] = useState(null)
+
     KeepState()
     return(
         <SafeAreaProvider>
@@ -20,11 +24,12 @@ export default function Headcounts({ navigation }){
                 </View>
 
                 <View style ={{flex: .5}}>
-                    {IteratorBttns()}
+                    {IteratorBttns(value, setValue)}
                 </View>
 
             </View>
-            <SubmitBttnfn fn = {submit_floors(snap)}/>
+            
+            <SubmitBttnfn fn = {() => {submit_floors(snap, value)}}/>
         </SafeAreaProvider>
     );
 }
@@ -59,28 +64,48 @@ function FloorSelector(snap) {
     </View>;
 }
 
-function IteratorBttns() {
+function IteratorBttns(value, setValue) {
+    const [open, setOpen] = useState(false)
+    const [items, setItems] = useState([
+    {label: '8AM', value: '8:00AM'},
+    {label: '9AM', value: '9:00AM'},
+    {label: '10AM', value: '10:00AM'},
+    {label: '11AM', value: '11:00AM'},
+    {label: '12PM', value: '12:00PM'},
+    {label: '1PM', value: '1:00PM'},
+    {label: '2PM', value: '2:00PM'},
+    {label: '3PM', value: '3:00PM'},
+    {label: '4PM', value: '4:00PM'},
+    {label: '5PM', value: '5:00PM'},
+    {label: '6PM', value: '6:00PM'},
+    {label: '7PM', value: '7:00PM'},
+    {label: '8PM', value: '8:00PM'},
+    {label: '9PM', value: '9:00PM'},
+    {label: '10PM', value: '10:00PM'},
+    {label: '11PM', value: '11:00PM'},
+    {label: '12AM', value: '12:00AM'},
+    {label: '1AM', value: '1:00AM'},
+    ])
+    
     return (
     <>
-        <View style={{
-            backgroundColor: '#333940',
-            flex: .25,
-            marginHorizontal: '1%',
-            marginTop: '1%',
-            marginBottom: '.5%'
-            }}
-        >
+        
+        <View style ={{flex: .2, marginHorizontal: '1%', marginBottom: '.5%', marginTop: '1%', zIndex: 2}}>
+        <DropDownPicker
+            placeholder = "Select a time"
+            listMode = "SCROLLVIEW"
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+        />
         </View>
     
-        <TouchableOpacity style={{
-            backgroundColor: '#041e42',
-            flex: 1,
-            marginHorizontal: '1%',
-            marginVertical: '.5%',
-            justifyContent: 'center',
-            alignItems: 'center',
-            }} 
-        onPress={()=> store.floor_count[store.cur_floor - 1] += 1} 
+        <TouchableOpacity 
+            style={{backgroundColor: '#041e42', flex: 1, marginHorizontal: '1%', marginVertical: '.5%', justifyContent: 'center', alignItems: 'center',}} 
+            onPress={()=> store.floor_count[store.cur_floor - 1] += 1} 
         >
             <Image style = {{width: 100, height: 100, marginLeft: 5,}} source = {require('../assets/images/up_arrow.png')}/>
         </TouchableOpacity>
@@ -115,14 +140,15 @@ const FloorBttn=({
     </TouchableOpacity>
 )
 
-function submit_floors(snap){
- 
+function submit_floors(snap, time){
+    
     const formEle = {
         "Floor1": check(snap.floor_count[0]),
         "Floor2": check(snap.floor_count[1]),
         "Floor3": check(snap.floor_count[2]),
         "Floor4": check(snap.floor_count[3]),
         "Floor5": check(snap.floor_count[4]),
+        "Time": time
     }
 
     function check(floor){
@@ -131,6 +157,8 @@ function submit_floors(snap){
         }
         else return floor
     }
+    console.log(formEle)
+   
     const re = fetch('https://sheetdb.io/api/v1/hn07xtbdqi48h', {
           method: 'POST',
           headers: {
@@ -138,7 +166,6 @@ function submit_floors(snap){
           },
           body: JSON.stringify(formEle),
     });
-    
 }
 
  
