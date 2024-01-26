@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {View, Text, TouchableOpacity, Image} from 'react-native';
+import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSnapshot } from 'valtio';
@@ -132,18 +132,44 @@ function IteratorBttns(value, setValue) {
     )
 }
   
-const FloorBttn=({
-    label,
-    floor_num,
-    data
-    }) => (
-    <TouchableOpacity
-    style = {[styles.container, {flex: .2, backgroundColor: floor_num == data.cur_floor? '#041e42': '#333940', margin: '1%'}]}
-    onPress={()=>store.cur_floor = floor_num}
-    >
-        <Text style = {{color: 'white', fontSize:22}}> {label}         {data.floor_count[floor_num - 1]} </Text>
-    </TouchableOpacity>
-)
+const handleTextChange = (floor_num, newText) => {
+  const parsedValue = parseInt(newText, 10);
+
+  if (isNaN(parsedValue)) {
+    store.floor_count[floor_num - 1] = 0;
+  } else {
+    store.floor_count[floor_num - 1] = parsedValue;
+  }
+};
+
+const FloorBttn = ({ label, floor_num, data }) => {
+  const handleChangeWrapper = (newText) => {
+    handleTextChange(floor_num, newText , data);
+  };
+
+  return (
+  <TouchableOpacity
+    style={[
+      styles.container,
+      {
+        flex: 0.2,
+        backgroundColor: floor_num == data.cur_floor ? '#041e42' : '#333940',
+        margin: '1%',
+        flexDirection: 'row', 
+        alignItems: 'center', 
+      },
+    ]}
+    onPress={() => store.cur_floor = floor_num}
+  >
+    <Text style={{ color: 'white', fontSize: 22 }}>{label}</Text>
+    <TextInput
+      style={{ color: 'white', fontSize: 22, marginLeft: 50 }} 
+      value={data.floor_count[floor_num - 1]}
+      onChangeText={handleChangeWrapper}
+    />
+  </TouchableOpacity>
+)}
+
 
 function submit_floors(snap, time){
     
