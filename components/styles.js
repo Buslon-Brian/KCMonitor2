@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native'
+import { store } from '../stores/store';
 
 const styles = StyleSheet.create({
     container: {
@@ -42,8 +43,7 @@ const styles = StyleSheet.create({
       },
     
       header_bar: {
-        flex: .15, 
-        backgroundColor: '#041e42', 
+        flex: .15,  
         alignItems: 'center', 
         justifyContent: 'center'
       },

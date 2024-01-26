@@ -5,31 +5,44 @@ import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
+import { SketchPicker } from 'react-color'
 
 export default function Settings({ navigation }){
     const [isModalVisible, setModalVisible] = useState(true)
     const toggleModal = () => {setModalVisible(!isModalVisible)}   
-   
-    const handleOkPress = () => {
-        toggleModal()
+    const handleOkPress = () => {toggleModal()}
+    const [currentColor, setCurrentColor] = useState('#041e42');
+    const handleChangeComplete = (color) => {
+      setCurrentColor(color)
+      store.color = color.hex
     }
-
-
+  
     return (
         <SafeAreaProvider>
             <Header_c title = "Settings" navigation = {navigation}/>
-            <View style = {[styles.container, {flexDirection: 'row', alignItems: 'flex-start'}]}>
             
-            <TouchableOpacity
-                style={{ flex: 1, color: 'white', backgroundColor: '#333940', marginHorizontal: '15%', padding: 10, justifyContent: 'center', alignItems: 'center' }}
-                onPress={() => toggleModal()}
-            >
-                <Text style = {{color: 'white'}}> App Information </Text>
-            </TouchableOpacity>
-            
-            {Popup(isModalVisible, toggleModal, handleOkPress)}
+            <View style = {{flex: 1, flexDirection: 'row', backgroundColor: '#25292e'}}>
+           
+              <View style = {{flex: 1, justifyContent: 'center', alignItems:'center'}}>
+                <SketchPicker 
+                color={currentColor}
+                onChangeComplete={handleChangeComplete}
+                presetColors={['#041e42', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF']}
+                />
+              </View>
 
 
+              <View style = {{flex: 1, flexDirection: 'column'}}>
+                <Text style = {{color: 'white', margin: 10}}> Current Color: {currentColor.hex}</Text>
+                <TouchableOpacity
+                  style={{color: 'white', backgroundColor: '#333940', padding: 10, justifyContent: 'center', alignItems: 'center', margin: 10 }}
+                  onPress={() => toggleModal()}
+                >
+                  <Text style = {{color: 'white'}}> App Information </Text>
+                </TouchableOpacity>
+              </View>
+            
+              {Popup(isModalVisible, toggleModal, handleOkPress)}
             </View>
         </SafeAreaProvider>
     )
@@ -37,9 +50,7 @@ export default function Settings({ navigation }){
 }
 
 function Popup(isModalVisible, toggleModal, handleOkPress) {
-    const snap = useSnapshot(store);
-    const cur_keys = snap.cur_keys;
-  
+
     return (
       <Modal
         transparent={true}

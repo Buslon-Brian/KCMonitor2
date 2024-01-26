@@ -1,9 +1,12 @@
 import {View, Text, TouchableOpacity, Image} from 'react-native'
 import styles from './styles'
+import { store } from '../stores/store'
+import { useSnapshot } from 'valtio'
 
 export default function Header_c({title, navigation}) {
+    const snap = useSnapshot(store)
     return (
-        <View style={[styles.header_bar, {flexDirection: 'row', alignItems: 'center',}]}>
+        <View style={[styles.header_bar, {flexDirection: 'row', alignItems: 'center', backgroundColor: snap.color}]}>
             <TouchableOpacity 
                 style = {{flex: .05, alignItems: 'center'}}
                 onPress={()=> navigation.navigate('Menu')}
