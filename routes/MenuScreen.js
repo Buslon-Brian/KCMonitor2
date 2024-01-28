@@ -19,7 +19,7 @@ function MenuScreen({ navigation }) {
       
   <SafeAreaProvider>
 
-    {Header()}
+    {Header(snap)}
     {Grid(navigation)}
     {Footer(snap)}
 
@@ -98,8 +98,8 @@ const Item = ({ title, path, screen, navigation }) => (
   </TouchableOpacity>
 );
 
-function Header() {
-  return <View style={styles.header_bar}>
+function Header(snap) {
+  return <View style={[styles.header_bar, {backgroundColor: snap.color}]}>
     <Text style={{ color: '#fff', fontSize: 25 }}> KC Building Operations </Text>
   </View>;
 }

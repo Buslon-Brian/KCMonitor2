@@ -5,17 +5,17 @@ import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
-import { SketchPicker } from 'react-color'
+import ColorPicker from 'react-native-wheel-color-picker';
 
 export default function Settings({ navigation }){
     const [isModalVisible, setModalVisible] = useState(true)
     const toggleModal = () => {setModalVisible(!isModalVisible)}   
     const handleOkPress = () => {toggleModal()}
-    const [currentColor, setCurrentColor] = useState('#041e42');
-    const handleChangeComplete = (color) => {
-      setCurrentColor(color)
-      store.color = color.hex
-    }
+    const [color, setColor] = useState('#041e42');
+    const onColorChange = color => {
+    setColor(color);
+    store.color = color
+    };
   
     return (
         <SafeAreaProvider>
@@ -23,17 +23,21 @@ export default function Settings({ navigation }){
             
             <View style = {{flex: 1, flexDirection: 'row', backgroundColor: '#25292e'}}>
            
-              <View style = {{flex: 1, justifyContent: 'center', alignItems:'center'}}>
-                <SketchPicker 
-                color={currentColor}
-                onChangeComplete={handleChangeComplete}
-                presetColors={['#041e42', '#F5A623', '#F8E71C', '#8B572A', '#7ED321', '#417505', '#BD10E0', '#9013FE', '#4A90E2', '#50E3C2', '#B8E986', '#000000', '#4A4A4A', '#9B9B9B', '#FFFFFF']}
+              <View style = {{flex: 1, justifyContent: 'flex-start', marginBottom: 15}}>
+                <ColorPicker
+                color={color}
+                onColorChange={(color) => onColorChange(color)}
+                palette={['#000000','#888888','#ed1c24','#041e42','#1633e6','#00aeef','#00c85d','#57ff0a','#ffde17','#f26522']}
+                thumbSize={30}
+                sliderSize={30}
+                noSnap={true}
+                row={false}
                 />
               </View>
 
 
               <View style = {{flex: 1, flexDirection: 'column'}}>
-                <Text style = {{color: 'white', margin: 10}}> Current Color: {currentColor.hex}</Text>
+                <Text style = {{color: 'white', margin: 10}}> Current Color: {color}</Text>
                 <TouchableOpacity
                   style={{color: 'white', backgroundColor: '#333940', padding: 10, justifyContent: 'center', alignItems: 'center', margin: 10 }}
                   onPress={() => toggleModal()}
