@@ -164,7 +164,7 @@ const FloorBttn = ({ label, floor_num, data }) => {
     <Text style={{ color: 'white', fontSize: 22 }}>{label}</Text>
     <TextInput
       style={{ color: 'white', fontSize: 22, marginLeft: 50 }} 
-      value={data.floor_count[floor_num - 1]}
+      value={data.floor_count[floor_num - 1].toString()}
       onChangeText={handleChangeWrapper}
     />
   </TouchableOpacity>
