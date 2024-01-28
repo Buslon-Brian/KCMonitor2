@@ -24,7 +24,7 @@ export default function Headcounts({ navigation }){
                 </View>
 
                 <View style ={{flex: .5}}>
-                    {IteratorBttns(value, setValue)}
+                    {IteratorBttns(value, setValue, snap)}
                 </View>
 
             </View>
@@ -64,7 +64,7 @@ function FloorSelector(snap) {
     </View>;
 }
 
-function IteratorBttns(value, setValue) {
+function IteratorBttns(value, setValue, snap) {
     const [open, setOpen] = useState(false)
     const [items, setItems] = useState([
     {label: '8AM', value: '8:00AM'},
@@ -109,7 +109,7 @@ function IteratorBttns(value, setValue) {
         </View>
     
         <TouchableOpacity 
-            style={{backgroundColor: '#041e42', flex: 1, marginHorizontal: '1%', marginVertical: '.5%', justifyContent: 'center', alignItems: 'center',}} 
+            style={{backgroundColor: snap.color, flex: 1, marginHorizontal: '1%', marginVertical: '.5%', justifyContent: 'center', alignItems: 'center',}} 
             onPress={()=> store.floor_count[store.cur_floor - 1] += 1} 
         >
             <Image style = {{width: 100, height: 100, marginLeft: 5,}} source = {require('../assets/images/up_arrow.png')}/>
@@ -153,7 +153,7 @@ const FloorBttn = ({ label, floor_num, data }) => {
       styles.container,
       {
         flex: 0.2,
-        backgroundColor: floor_num == data.cur_floor ? '#041e42' : '#333940',
+        backgroundColor: floor_num == data.cur_floor ? data.color : '#333940',
         margin: '1%',
         flexDirection: 'row', 
         alignItems: 'center', 
@@ -169,7 +169,6 @@ const FloorBttn = ({ label, floor_num, data }) => {
     />
   </TouchableOpacity>
 )}
-
 
 function submit_floors(snap, time){
     

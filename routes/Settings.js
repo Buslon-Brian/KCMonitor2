@@ -8,10 +8,11 @@ import Header_c from '../components/Header';
 import ColorPicker from 'react-native-wheel-color-picker';
 
 export default function Settings({ navigation }){
-    const [isModalVisible, setModalVisible] = useState(true)
+    const snap = useSnapshot(store)
+    const [isModalVisible, setModalVisible] = useState(false)
     const toggleModal = () => {setModalVisible(!isModalVisible)}   
     const handleOkPress = () => {toggleModal()}
-    const [color, setColor] = useState('#041e42');
+    const [color, setColor] = useState(snap.color);
     const onColorChange = color => {
     setColor(color);
     store.color = color
