@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     
       item: {
         backgroundColor: '#333940',
+        flex: 1,
         padding: 10,
         marginVertical: 5,
         marginHorizontal: 5,

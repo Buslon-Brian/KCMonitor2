@@ -2,7 +2,7 @@ import {View, Text, TouchableOpacity, Image} from 'react-native'
 import styles from './styles'
 import { store } from '../stores/store'
 import { useSnapshot } from 'valtio'
-import { FontAwesome } from '@expo/vector-icons';
+import { Feather } from '@expo/vector-icons';
 
 
 export default function Header_c({title, navigation}) {
@@ -13,7 +13,7 @@ export default function Header_c({title, navigation}) {
                 style = {{flex: .05, alignItems: 'center'}}
                 onPress={()=> navigation.navigate('Menu')}
             >
-                <FontAwesome name="arrow-left" color="white" size = {32}/>
+                <Feather name="chevron-left" color="white" size = {64}/>
 
             </TouchableOpacity>
             
@@ -23,7 +23,7 @@ export default function Header_c({title, navigation}) {
                 style = {{flex: .2, alignItems: 'flex-end'}}
                 onPress={()=> navigation.navigate('Settings')}    
             >
-                <FontAwesome name="bars" size={32} color="white" style = {{marginLeft: 5, marginRight: 32}} />
+                <Feather name="settings" size={42} color="white" style = {{marginLeft: 5, marginRight: 32}} />
             </TouchableOpacity>
         </View>
     )

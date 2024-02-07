@@ -3,15 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
-import { FontAwesome } from '@expo/vector-icons';
-import peopleImage from '../assets/images/people.png';
-import qrCodeImage from '../assets/images/QRCode.png';
-import buildingImage from '../assets/images/Building.png';
-import clockImage from '../assets/images/Clock.png';
-import printerImage from '../assets/images/Printer.png';
-import keyImage from '../assets/images/Key.png';
-import ticketsImage from '../assets/images/Tickets.png';
-import logoutImage from '../assets/images/LogOut.png';
+import { Feather } from '@expo/vector-icons'
 
 function MenuScreen({ navigation }) {
   const snap =useSnapshot(store)
@@ -31,54 +23,54 @@ function MenuScreen({ navigation }) {
 const DATA = [
   {
     id: '1',
-    path: peopleImage,
+    path: 'users',
     title: 'Headcounts',
     screen: 'Headcounts',
   },
   {
     id: '2',
-    path: qrCodeImage,
+    path: 'camera',
     title: 'QR Codes',
     screen: 'QR',
   },
   {
     id: '3',
-    path: buildingImage,
+    path: 'list',
     title: 'Property Rounds',
     screen: 'Property',
   },
   {
     id: '4',
-    path: clockImage,
+    path: 'clock',
     title: 'Hourly Assignments',
     screen: 'Hourly',
   },
   {
     id: '5',
-    path: printerImage,
+    path: 'printer',
     title: 'Printers',
     screen: 'Printers',
   },
   {
     id: '6',
-    path: keyImage,
+    path: 'key',
     title: 'Keys',
     screen: 'Keys',
   },
   {
     id: '7',
-    path: ticketsImage,
+    path: 'tool',
     title: 'Maintenance Tickets',
   },
   {
-    id: '9',
-    path: logoutImage,
+    id: '8',
+    path: 'settings',
     title: 'Settings',
     screen: 'Settings',
   },
   {
     id: '9',
-    path: logoutImage,
+    path: 'log-out',
     title: 'Log Out',
     screen: 'Login',
   },
@@ -98,7 +90,7 @@ const Item = ({ title, path, screen, navigation }) => (
       }
     }}
   >
-    <Image style={styles.image} source={path} onError={(error) => console.log('Image loading error:', error)} />
+    <Feather name= {path} size={100} color="white" style = {{flex: 1}}/>
     <Text style={{ color: '#fff', fontSize: 20 }} adjustsFontSizeToFit={true} allowFontScaling={true}>
       {title}
     </Text>

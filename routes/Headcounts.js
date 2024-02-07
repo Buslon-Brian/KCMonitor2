@@ -4,6 +4,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
+import { Feather } from '@expo/vector-icons';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
@@ -112,7 +113,7 @@ function IteratorBttns(value, setValue, snap) {
             style={{backgroundColor: snap.color, flex: 1, marginHorizontal: '1%', marginVertical: '.5%', justifyContent: 'center', alignItems: 'center',}} 
             onPress={()=> store.floor_count[store.cur_floor - 1] += 1} 
         >
-            <Image style = {{width: 100, height: 100, marginLeft: 5,}} source = {require('../assets/images/up_arrow.png')}/>
+            <Feather name="chevron-up" size={124} color="white" />
         </TouchableOpacity>
                     
         <TouchableOpacity style={{
@@ -126,7 +127,7 @@ function IteratorBttns(value, setValue, snap) {
         }} 
         onPress={()=>{if(store.floor_count[store.cur_floor - 1] != 0){store.floor_count[store.cur_floor - 1] -= 1}}}
         > 
-            <Image style = {{width: 100, height: 100, marginLeft: 5,}} source = {require('../assets/images/down_arrow.png')}/>
+            <Feather name="chevron-down" size={124} color="white" />
         </TouchableOpacity>
     </>
     )

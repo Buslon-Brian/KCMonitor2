@@ -4,6 +4,7 @@ import styles from "../components/styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
+import { Feather } from '@expo/vector-icons';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
 
@@ -57,18 +58,21 @@ function HourlyButtons(handleHourPress) {
             style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleHourPress('Floater')}
         >
+            <Feather name="slack" size={64} color="white" />
             <Text style={{ color: 'white', fontSize: 22, marginVertical: 15 }}> Floater </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleHourPress('Headcounts')}
         >
+            <Feather name="users" size={64} color="white" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Headcounts </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleHourPress('Kiosk')}
-        >
+        > 
+            <Feather name="pen-tool" size={64} color="white" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Kiosk </Text>
         </TouchableOpacity>
     </View>;

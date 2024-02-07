@@ -4,6 +4,7 @@ import styles from "../components/styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
+import { Feather } from '@expo/vector-icons';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
 
@@ -52,21 +53,21 @@ function KeyButtons(handleKeyPress) {
             style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleKeyPress('Black')}
         >
-            <Image style ={{flex: 1, margin:10}} source = {require('../assets/images/black_key.png')} />
+            <Feather name="key" size={64} color="black" />
             <Text style={{ color: 'white', fontSize: 22, marginVertical: 15 }}> Black </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleKeyPress('Blue')}
         >
-            <Image style ={{flex: 1, margin:10}} source = {require('../assets/images/blue_key.png')} />
+            <Feather name="key" size={64} color="dodgerblue" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Blue </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleKeyPress('Green')}
         >
-            <Image style ={{flex: 1, margin:10}} source = {require('../assets/images/green_key.png')} />
+            <Feather name="key" size={64} color="aquamarine" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Green </Text>
         </TouchableOpacity>
     </View>;
