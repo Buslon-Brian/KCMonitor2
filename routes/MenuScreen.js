@@ -3,6 +3,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
+import { FontAwesome } from '@expo/vector-icons';
 import peopleImage from '../assets/images/people.png';
 import qrCodeImage from '../assets/images/QRCode.png';
 import buildingImage from '../assets/images/Building.png';
@@ -68,6 +69,12 @@ const DATA = [
     id: '7',
     path: ticketsImage,
     title: 'Maintenance Tickets',
+  },
+  {
+    id: '9',
+    path: logoutImage,
+    title: 'Settings',
+    screen: 'Settings',
   },
   {
     id: '9',

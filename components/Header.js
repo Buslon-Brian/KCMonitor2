@@ -2,6 +2,8 @@ import {View, Text, TouchableOpacity, Image} from 'react-native'
 import styles from './styles'
 import { store } from '../stores/store'
 import { useSnapshot } from 'valtio'
+import { FontAwesome } from '@expo/vector-icons';
+
 
 export default function Header_c({title, navigation}) {
     const snap = useSnapshot(store)
@@ -11,7 +13,7 @@ export default function Header_c({title, navigation}) {
                 style = {{flex: .05, alignItems: 'center'}}
                 onPress={()=> navigation.navigate('Menu')}
             >
-                <Image style = {{width: 33, height: 33, marginLeft: 25}} source = {require('../assets/images/back_arrow2.png')}/>
+                <FontAwesome name="arrow-left" color="white" size = {32}/>
 
             </TouchableOpacity>
             
@@ -21,7 +23,7 @@ export default function Header_c({title, navigation}) {
                 style = {{flex: .2, alignItems: 'flex-end'}}
                 onPress={()=> navigation.navigate('Settings')}    
             >
-                <Image style = {{width: 33, height: 33, marginLeft: 5, marginRight: 15}} source = {require('../assets/images/gear.png')}/>
+                <FontAwesome name="bars" size={32} color="white" style = {{marginLeft: 5, marginRight: 32}} />
             </TouchableOpacity>
         </View>
     )
