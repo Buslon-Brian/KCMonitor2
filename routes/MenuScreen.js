@@ -20,6 +20,7 @@ function MenuScreen({ navigation }) {
   );
 }
 
+
 const DATA = [
   {
     id: '1',
