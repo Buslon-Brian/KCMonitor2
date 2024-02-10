@@ -91,7 +91,7 @@ const Item = ({ title, path, screen, navigation }) => (
       }
     }}
   >
-    <Feather name= {path} size={100} color="white" style = {{flex: 1}}/>
+    <Feather name= {path} size={120} color="white" style = {{flex: 1}}/>
     <Text style={{ color: '#fff', fontSize: 20 }} adjustsFontSizeToFit={true} allowFontScaling={true}>
       {title}
     </Text>
@@ -110,7 +110,9 @@ function Grid(navigation) {
       data={DATA}
       renderItem={({ item }) => <Item title={item.title} path={item.path} screen={item.screen} navigation={navigation} />}
       keyExtractor={item => item.id}
-      numColumns={3} />
+      numColumns={3} 
+
+      />
   </View>;
 }
 

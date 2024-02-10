@@ -53,21 +53,21 @@ function KeyButtons(handleKeyPress) {
             style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleKeyPress('Black')}
         >
-            <Feather name="key" size={64} color="black" />
+            <Feather name="key" size={100} color="black" />
             <Text style={{ color: 'white', fontSize: 22, marginVertical: 15 }}> Black </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleKeyPress('Blue')}
         >
-            <Feather name="key" size={64} color="dodgerblue" />
+            <Feather name="key" size={100} color="dodgerblue" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Blue </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleKeyPress('Green')}
         >
-            <Feather name="key" size={64} color="aquamarine" />
+            <Feather name="key" size={100} color="aquamarine" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Green </Text>
         </TouchableOpacity>
     </View>;

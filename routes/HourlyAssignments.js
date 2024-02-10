@@ -58,21 +58,21 @@ function HourlyButtons(handleHourPress) {
             style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleHourPress('Floater')}
         >
-            <Feather name="slack" size={64} color="white" />
+            <Feather name="slack" size={100} color="white" />
             <Text style={{ color: 'white', fontSize: 22, marginVertical: 15 }}> Floater </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleHourPress('Headcounts')}
         >
-            <Feather name="users" size={64} color="white" />
+            <Feather name="users" size={100} color="white" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Headcounts </Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
             onPress={() => handleHourPress('Kiosk')}
         > 
-            <Feather name="pen-tool" size={64} color="white" />
+            <Feather name="pen-tool" size={100} color="white" />
             <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Kiosk </Text>
         </TouchableOpacity>
     </View>;

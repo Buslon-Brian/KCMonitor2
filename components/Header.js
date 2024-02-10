@@ -10,20 +10,20 @@ export default function Header_c({title, navigation}) {
     return (
         <View style={[styles.header_bar, {flexDirection: 'row', alignItems: 'center', backgroundColor: snap.color}]}>
             <TouchableOpacity 
-                style = {{flex: .05, alignItems: 'center'}}
+                style = {{flex: .1, alignItems: 'center'}}
                 onPress={()=> navigation.navigate('Menu')}
             >
-                <Feather name="chevron-left" color="white" size = {64}/>
+                <Feather name="chevron-left" color="white" size = {48}/>
 
             </TouchableOpacity>
             
-            <Text style = {{ flex: 1, color: 'white', fontSize: 32, marginLeft: 25}}> {title} </Text>
+            <Text style = {{ flex: 1, color: 'white', fontSize: 32,}}> {title} </Text>
             
             <TouchableOpacity 
                 style = {{flex: .2, alignItems: 'flex-end'}}
                 onPress={()=> navigation.navigate('Settings')}    
             >
-                <Feather name="settings" size={42} color="white" style = {{marginLeft: 5, marginRight: 32}} />
+                <Feather name="settings" size={36} color="white" style = {{marginLeft: 5, marginRight: 32}} />
             </TouchableOpacity>
         </View>
     )
