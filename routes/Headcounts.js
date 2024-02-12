@@ -197,6 +197,8 @@ function submit_floors(snap, time){
           },
           body: JSON.stringify(formEle),
     });
+    
+    store.floor_count = [0,0,0,0,0,0]
 }
 
  

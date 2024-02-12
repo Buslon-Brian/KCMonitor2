@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { NavigationContainer} from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { StatusBar } from 'expo-status-bar'
 import LoginScreen from './routes/LoginScreen'
 import MenuScreen from './routes/MenuScreen'
 import Headcounts from './routes/Headcounts'
@@ -17,6 +18,7 @@ export default function App() {
   
   return (
   <NavigationContainer>
+    <StatusBar style="light" />
     <Stack.Navigator 
     initialRouteName="Login" 
     screenOptions={{headerShown: false, animation: 'none',}}
@@ -32,6 +34,7 @@ export default function App() {
       <Stack.Screen name ="Settings" component = {Settings}/>
     
     </Stack.Navigator>
+    
   </NavigationContainer>
   );
 }

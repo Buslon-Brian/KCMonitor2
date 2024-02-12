@@ -24,6 +24,7 @@
       },
       "package": "com.bbuslon.KCMonitor2"
     },
+   
     "web": {
       "bundler": "metro",
       "favicon": "./assets/favicon.png"
