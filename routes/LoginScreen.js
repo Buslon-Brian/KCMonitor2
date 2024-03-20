@@ -82,8 +82,8 @@ async function validate(input, navigation, setError){
   
   const output = await res.text()
   if(output == "true"){
-  setError(false)  
-  navigation.navigate('Keys')
+    setError(false)  
+    navigation.navigate('Keys')
   }
 
   else{setError(true)}
