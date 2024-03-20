@@ -4,10 +4,10 @@ import { BarCodeScanner, requestPermissionsAsync } from 'expo-barcode-scanner';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
-import Submitbttnfn from '../components/SubmitBttn'
+import KeepState from '../components/KeepState';
+import moment from 'moment';
 
 function QR({ navigation }){
     const [hasPermission, setHasPermission] = useState(null)
@@ -34,15 +34,22 @@ function QR({ navigation }){
         if(snap.prop_codes.includes(data)){
             setText(data)
             if(snap.prop_scanned.includes(data) == false){
-                store.prop_scanned.push(data)
-                console.log("SCANNED")
+                let scan = JSON.stringify({
+                    "date": moment().format('YYYY-MM-DD hh:mm:ss a'), 
+                    "name": data
+                })
+                store.prop_scanned.push(scan)
             }
         }
     
         else if(snap.prnt_codes.includes(data)){
             setText(data)
             if(snap.prnt_scanned.includes(data) == false){
-                store.prnt_scanned.push(data)
+                let scan = JSON.stringify({
+                    "date": moment().format('YYYY-MM-DD hh:mm:ss a'), 
+                    "name": data
+                })
+                store.prnt_scanned.push(scan)
             }
         }
     
@@ -86,26 +93,6 @@ function QR({ navigation }){
 
         </SafeAreaProvider>
     )
-}
-
-function KeepState() {
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(store);
-          await AsyncStorage.setItem('state', jsonValue);
-        } catch (e) {
-          // saving error
-        }
-      };
-
-      const getData = async () => {
-        try {
-          const jsonValue = await AsyncStorage.getItem('state');
-          return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-          // error reading value
-        }
-      };
 }
 
 export default QR

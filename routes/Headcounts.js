@@ -142,7 +142,6 @@ function submit_floors(snap){
     console.log(formEle)
    
     postHeadcounts(formEle)
-    
     store.floor_count = [0,0,0,0,0,0]
 }
 
@@ -161,6 +160,7 @@ async function postHeadcounts(formEle){
 
   const output = await res.text()
   console.log(output)
+  
   } 
   
   catch (error) {

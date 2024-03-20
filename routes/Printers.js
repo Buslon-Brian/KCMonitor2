@@ -6,6 +6,7 @@ import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
+import KeepState from '../components/KeepState';
 
 export default function Printers ({navigation}){
     const snap = useSnapshot(store)
@@ -51,29 +52,9 @@ function List(data, Item) {
     }
 }
 
-function KeepState() {
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(store);
-          await AsyncStorage.setItem('state', jsonValue);
-        } catch (e) {
-          // saving error
-        }
-      };
-
-      const getData = async () => {
-        try {
-          const jsonValue = await AsyncStorage.getItem('state');
-          return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-          // error reading value
-        }
-      };
-}
-
 function submit_prnt(snap) {
   console.log("exec")
-  fetch("https://hooks.slack.com/services/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", {
+  fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
                   method: "POST",
                   body: JSON.stringify({
                       "text": `${snap.username} scanned ${snap.prnt_scanned.length} printers`
