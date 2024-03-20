@@ -47,14 +47,14 @@ export default function Settings({ navigation }){
                 </TouchableOpacity>
               </View>
             
-              {Popup(isModalVisible, toggleModal, handleOkPress)}
+              {Popup(isModalVisible, toggleModal, handleOkPress, snap)}
             </View>
         </SafeAreaProvider>
     )
 
 }
 
-function Popup(isModalVisible, toggleModal, handleOkPress) {
+function Popup(isModalVisible, toggleModal, handleOkPress, snap) {
 
     return (
       <Modal
@@ -84,7 +84,7 @@ function Popup(isModalVisible, toggleModal, handleOkPress) {
            
             <View style={{ flex: .25, flexDirection: 'row' }}>
               <TouchableOpacity
-                style={{ flex: 1, color: 'white', backgroundColor: '#041e42', margin: 5, justifyContent: 'center', alignItems: 'center' }}
+                style={{ flex: 1, color: 'white', backgroundColor: snap.color, margin: 5, justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => handleOkPress()}
               >
                 <Text style = {{color: 'white'}}> OK </Text>

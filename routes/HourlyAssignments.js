@@ -105,7 +105,7 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
            
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <TouchableOpacity
-                style={{ flex: 1, color: 'white', backgroundColor: '#041e42', margin: 5, justifyContent: 'center', alignItems: 'center' }}
+                style={{ flex: 1, color: 'white', backgroundColor: snap.color, margin: 5, justifyContent: 'center', alignItems: 'center' }}
                 onPress={() => handleOkPress()}
               >
                 <Text style = {{color: 'white'}}> OK </Text>
