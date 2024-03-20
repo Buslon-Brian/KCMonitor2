@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import { Feather } from '@expo/vector-icons';
+import KeepState from '../components/KeepState';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
@@ -35,25 +35,7 @@ export default function Headcounts({ navigation }){
     );
 }
 
-function KeepState() {
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(store);
-          await AsyncStorage.setItem('state', jsonValue);
-        } catch (e) {
-          // saving error
-        }
-      };
 
-      const getData = async () => {
-        try {
-          const jsonValue = await AsyncStorage.getItem('state');
-          return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-          // error reading value
-        }
-      };
-}
 
 function FloorSelector(snap) {
     return <View style={{ flex: .7 }}>
@@ -140,6 +122,7 @@ const FloorBttn = ({ label, floor_num, data }) => {
 function submit_floors(snap){
     
     const formEle = {
+        "scriptfn": "post_count",
         "Timestamp": moment().format('L'),
         "Hour": moment().format('hh a'),
         "Floor 1": check(snap.floor_count[0]),
@@ -158,15 +141,19 @@ function submit_floors(snap){
     }
     console.log(formEle)
    
-    const re = fetch('https://sheetdb.io/api/v1/xyqh06tsd5hqa', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formEle),
-    });
+    postHeadcounts(formEle)
     
     store.floor_count = [0,0,0,0,0,0]
 }
 
- 
+async function postHeadcounts(formEle){
+  
+  const res = await fetch(process.env.EXPO_PUBLIC_SHEETSURL, {
+    method: "POST",
+    body: JSON.stringify(formEle)
+    
+  })
+  
+  const output = await res.text()
+  console.log(output)
+} 
