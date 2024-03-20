@@ -148,12 +148,23 @@ function submit_floors(snap){
 
 async function postHeadcounts(formEle){
   
+  try{
   const res = await fetch(process.env.EXPO_PUBLIC_SHEETSURL, {
     method: "POST",
     body: JSON.stringify(formEle)
     
   })
   
+    if (!res.ok) {
+      throw new Error('Failed to make POST request: ' + response.status);
+    }
+
   const output = await res.text()
   console.log(output)
+  } 
+  
+  catch (error) {
+    console.error('Error:', error);
+    alert('An error occurred while making the POST request. Please try again later.')
+  }   
 } 
