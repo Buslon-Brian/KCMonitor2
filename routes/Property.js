@@ -72,17 +72,33 @@ function List(data, Item) {
     </View>
 }
 
-function submit_props(snap, store) {
-    console.log(snap.prop_scanned)
-    fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
-                    method: "POST",
-                    body: JSON.stringify({
-                        "text": `${snap.username} scanned ${snap.prop_scanned.length} QR Codes`
-                    })
-                });
+async function submit_props(snap, store) {
 
-    for(let i = 0; i < snap.prop_scanned.length; i++){
-        store.prop_codes.push(snap.prop_scanned[i])
-        store.prop_scanned.pop()
-    }
+    fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
+        method: "POST",
+        body: JSON.stringify({
+            "text": `${snap.username} scanned ${snap.prop_scanned.length} QR Codes`
+        })
+    });
+
+    
+    store.prop_codes.push(...snap.prop_scanned);
+    store.prop_codes = snap.prop_codes.filter((item, index, array) => {
+        return array.indexOf(item) === index;
+    });
+    store.prop_scanned = []
+    
+    
+    const res = await fetch(process.env.EXPO_PUBLIC_SHEETSURL,{
+        method: "POST",
+    
+        body: JSON.stringify({
+            'scriptfn': 'post_property',
+            'datatags': snap.prop_datatag
+    })
+    })
+  
+    console.log(await res.text())
+    store.prop_datatag = []
+    
 }

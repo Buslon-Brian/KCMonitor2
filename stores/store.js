@@ -20,6 +20,9 @@ export const store = proxy({
     
     prop_scanned:[],
     prnt_scanned:[],
+    
+    prop_datatag:[],
+    prnt_datatag:[],
     color: '#041e42'
 
     

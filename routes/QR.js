@@ -34,22 +34,18 @@ function QR({ navigation }){
         if(snap.prop_codes.includes(data)){
             setText(data)
             if(snap.prop_scanned.includes(data) == false){
-                let scan = JSON.stringify({
-                    "date": moment().format('YYYY-MM-DD hh:mm:ss a'), 
-                    "name": data
-                })
-                store.prop_scanned.push(scan)
+                let scan = JSON.stringify({"date": moment().format('YYYY-MM-DD hh:mm:ss a'), "name": data})
+                store.prop_scanned.push(data)
+                store.prop_datatag.push(scan)
             }
         }
     
         else if(snap.prnt_codes.includes(data)){
             setText(data)
             if(snap.prnt_scanned.includes(data) == false){
-                let scan = JSON.stringify({
-                    "date": moment().format('YYYY-MM-DD hh:mm:ss a'), 
-                    "name": data
-                })
-                store.prnt_scanned.push(scan)
+                let scan = JSON.stringify({"date": moment().format('YYYY-MM-DD hh:mm:ss a'),"name": data})
+                store.prop_scanned.push(data)
+                store.prnt_datatag.push(scan)
             }
         }
     
