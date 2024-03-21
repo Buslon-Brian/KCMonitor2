@@ -1,12 +1,13 @@
 import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import { SafeAreaProvider } from "react-native-safe-area-context"
-import styles from "../components/styles"
 import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import { Feather } from '@expo/vector-icons';
+import styles from '../components/styles';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
+import KeepState from '../components/KeepState';
 
 export default function Hourly({navigation}){
     const snap = useSnapshot(store)
@@ -22,6 +23,7 @@ export default function Hourly({navigation}){
     const handleOkPress = () => {
         toggleModal()
         setPosition(snap.cur_assign)
+        log_assign(snap)
     }
 
     const handleCancelPress = () => {toggleModal()}
@@ -47,7 +49,6 @@ export default function Hourly({navigation}){
                 </View>
 
             </View>
-            <SubmitBttnfn fn = {()=> {log_assign(snap)}}/>
         </SafeAreaProvider>
     )
 }
@@ -126,33 +127,13 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
       </Modal>
     );
 }
-
-function KeepState() {
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(store);
-          await AsyncStorage.setItem('state', jsonValue);
-        } catch (e) {
-          // saving error
-        }
-      };
-
-      const getData = async () => {
-        try {
-          const jsonValue = await AsyncStorage.getItem('state');
-          return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-          // error reading value
-        }
-      };
-}
   
 function log_assign(snap) {
   console.log("exec")
-  fetch("https://hooks.slack.com/services/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", {
-                  method: "POST",
-                  body: JSON.stringify({
-                      "text": `${snap.username} is on ${snap.cur_assign}`
-                  })
-              });
+  fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
+    method: "POST",
+    body: JSON.stringify({
+     "text": `${snap.username} is on ${snap.cur_assign}`
+    })
+    });
 }

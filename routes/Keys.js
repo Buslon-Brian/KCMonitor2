@@ -5,8 +5,9 @@ import { useEffect, useState } from 'react';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import { Feather } from '@expo/vector-icons';
+import moment from 'moment';
 import Header_c from '../components/Header';
-import SubmitBttnfn from '../components/SubmitBttn';
+import KeepState from '../components/KeepState';
 
 export default function Keys({navigation}){
     const snap = useSnapshot(store)
@@ -22,6 +23,7 @@ export default function Keys({navigation}){
     const handleOkPress = () => {
         toggleModal()
         setKey(snap.cur_keys)
+        log_keys(snap)
         navigation.navigate('Menu')
     }
 
@@ -123,23 +125,20 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
     );
 }
 
-function KeepState() {
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(store);
-          await AsyncStorage.setItem('state', jsonValue);
-        } catch (e) {
-          // saving error
-        }
-      };
 
-      const getData = async () => {
-        try {
-          const jsonValue = await AsyncStorage.getItem('state');
-          return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-          // error reading value
-        }
-      };
+async function log_keys(snap){
+  const res = await fetch(process.env.EXPO_PUBLIC_SHEETSURL, {
+    method: "POST",
+    
+    body: JSON.stringify({
+      'scriptfn': 'log_keys',
+      'timestamp': moment().format('YYYY-MM-DD hh:mm:ss a'),
+      'name': snap.username,
+      'keyset': snap.cur_keys
+    })
+    
+  })
+
+  console.log(await res.text()) 
+  
 }
- 
