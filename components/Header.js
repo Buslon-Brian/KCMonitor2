@@ -9,22 +9,31 @@ export default function Header_c({title, navigation}) {
     const snap = useSnapshot(store)
     return (
         <View style={[styles.header_bar, {flexDirection: 'row', alignItems: 'center', backgroundColor: snap.color}]}>
-            <TouchableOpacity 
-                style = {{flex: .1, alignItems: 'center'}}
-                onPress={()=> navigation.navigate('Menu')}
-            >
-                <Feather name="chevron-left" color="white" size = {48}/>
-
-            </TouchableOpacity>
             
-            <Text style = {{ flex: 1, color: 'white', fontSize: 32,}}> {title} </Text>
+            {BackBttn(navigation)}
+            <Text style = {[styles.text_large, {flex: 1}]}> {title} </Text>
+            {SettingsBttn(navigation)}
             
-            <TouchableOpacity 
-                style = {{flex: .2, alignItems: 'flex-end'}}
-                onPress={()=> navigation.navigate('Settings')}    
-            >
-                <Feather name="settings" size={36} color="white" style = {{marginLeft: 5, marginRight: 32}} />
-            </TouchableOpacity>
         </View>
     )
+
+
 }
+function SettingsBttn(navigation) {
+    return <TouchableOpacity
+        style={{ flex: .2, alignItems: 'flex-end' }}
+        onPress={() => navigation.navigate('Settings')}
+    >
+        <Feather name="settings" size={36} color="white" style={{ marginLeft: 5, marginRight: 32 }} />
+    </TouchableOpacity>;
+}
+
+function BackBttn(navigation) {
+    return <TouchableOpacity
+        style={{ flex: .1, alignItems: 'center' }}
+        onPress={() => navigation.navigate('Menu')}
+    >
+        <Feather name="chevron-left" color="white" size={48} />
+    </TouchableOpacity>;
+}
+
