@@ -50,7 +50,7 @@ function QR({ navigation }){
                     "date": moment().format('YYYY-MM-DD hh:mm:ss a'),
                     "name": data
                 })
-                store.prop_scanned.push(data)
+                store.prnt_scanned.push(data)
                 store.prnt_datatag.push(scan)
             }
         }
