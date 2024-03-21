@@ -52,8 +52,7 @@ function List(data, Item) {
     }
 }
 
-function submit_prnt(snap) {
-  console.log("exec")
+async function submit_prnt(snap, store) {
   fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
                   method: "POST",
                   body: JSON.stringify({
@@ -61,8 +60,22 @@ function submit_prnt(snap) {
                   })
               });
 
-  for(let i = 0; i < snap.prnt_scanned.length; i++){
-    store.prnt_codes.push(snap.prnt_scanned[i])
-    store.prnt_scanned.pop()
-  }
+    store.prnt_codes.push(...snap.prnt_scanned);
+    store.prnt_codes = snap.prnt_codes.filter((item, index, array) => {
+        return array.indexOf(item) === index;
+    });
+    store.prnt_scanned = []
+    
+    
+    const res = await fetch(process.env.EXPO_PUBLIC_SHEETSURL,{
+        method: "POST",
+    
+        body: JSON.stringify({
+            'scriptfn': 'post_printers',
+            'datatags': snap.prnt_datatag
+    })
+    })
+  
+    console.log(await res.text())
+    store.prnt_datatag = []
 }
