@@ -9,6 +9,21 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
       },
 
+    text_small: {
+      color:'white',
+      fontSize: 16,
+    },
+
+    text_medium: {
+      color: 'white',
+      fontSize: 22,
+    },
+
+    text_large: {
+      color: 'white',
+      fontSize: 32,
+    },
+
     searchbox: {
         backgroundColor: '#fff',
         alignItems: 'center',
