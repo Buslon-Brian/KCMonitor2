@@ -41,17 +41,17 @@ function Selector(snap, setTab) {
     return <View style={{ backgroundColor: '#25292e', flex: .15, flexDirection: 'row' }}>
 
         <TouchableOpacity
-            style={{ backgroundColor: '#333940', flex: .5, margin: '1%', alignItems: 'center', justifyContent: 'center' }}
+            style={styles.selector}
             onPress={() => setTab("unscanned")}
         >
-            <Text style={{ color: 'white', fontSize: 25 }}> Unscanned Codes ({snap.prop_codes.length - snap.prop_scanned.length})</Text>
+            <Text style={styles.text_medium}> Unscanned Codes ({snap.prop_codes.length - snap.prop_scanned.length})</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-            style={{ backgroundColor: '#333940', flex: .5, margin: '1%', alignItems: 'center', justifyContent: 'center' }}
+            style={styles.selector}
             onPress={() => setTab("scanned")}
         >
-            <Text style={{ color: 'white', fontSize: 25 }}> Scanned Codes ({snap.prop_scanned.length})</Text>
+            <Text style={styles.text_medium}> Scanned Codes ({snap.prop_scanned.length})</Text>
         </TouchableOpacity>
 
     </View>;
@@ -59,7 +59,7 @@ function Selector(snap, setTab) {
 
 const Item = ({ prop_code }) => (
     <View style={{ backgroundColor: '#333940', padding: 25, margin: 5 }}>
-      <Text style = {{color: 'white'}}>{prop_code}</Text>
+      <Text style = {styles.text_small}>{prop_code}</Text>
     </View>
 )
 

@@ -23,6 +23,14 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 32,
     },
+    
+    selector: { 
+      backgroundColor: '#333940', 
+      flex: .5, 
+      margin: '1%', 
+      alignItems: 'center', 
+      justifyContent: 'center' 
+    },
 
     searchbox: {
         backgroundColor: '#fff',

@@ -63,14 +63,14 @@ function QR({ navigation }){
     if (hasPermission === null) {
         return (
         <View style={styles.container}>
-            <Text style = {{color: 'white'}}>Requesting for camera permission</Text>
+            <Text style = {styles.text_medium}>Requesting for camera permission</Text>
         </View>)
     }
 
     if (hasPermission === false) {
         return (
         <View style={styles.container}>
-            <Text style={{ margin: 10, color:'white'}}>No access to camera</Text>
+            <Text style={[styles.text_medium, { margin: 10}]}>No access to camera</Text>
             <TouchableOpacity title={'Allow Camera'} onPress={() => askForCameraPermission()} />
         </View>)
     }

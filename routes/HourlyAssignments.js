@@ -38,13 +38,13 @@ export default function Hourly({navigation}){
             <View style = {{backgroundColor: '#25292e', flex: 1}}>
 
                 <View style = {{flex: .1, justifyContent: 'center'}}> 
-                    <Text style ={{fontSize:25, color: 'white'}}> Select an hourly assignment</Text>
+                    <Text style ={styles.text_medium}> Select an hourly assignment</Text>
                 </View>
             
                 {HourlyButtons(handleHourPress)}
             
                 <View style = {{flex: .4}}>
-                    <Text style = {{ color: 'white', fontSize: 25, marginVertical: 30, marginHorizontal: 10}}> Current Position: {position} </Text>
+                    <Text style = {[styles.text_medium, {marginVertical: 30, marginHorizontal: 10}]}> Current Position: {position} </Text>
                     {Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress)}
                 </View>
 

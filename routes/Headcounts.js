@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {View, Text, TouchableOpacity, Image, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Modal} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
@@ -13,7 +13,15 @@ import moment from 'moment';
 export default function Headcounts({ navigation }){
     const snap = useSnapshot(store)
     const [value, setValue] = useState(null)
+    const [isModalVisible, setModalVisible] = useState(false)
+    const toggleModal = () => {setModalVisible(!isModalVisible)}
 
+    const handleOkPress = () => {
+      toggleModal()
+      submit_floors(snap)
+    }
+    const handleCancelPress = () => {toggleModal()}
+    
     KeepState()
     return(
         <SafeAreaProvider>
@@ -30,12 +38,11 @@ export default function Headcounts({ navigation }){
 
             </View>
             
-            <SubmitBttnfn fn = {() => {submit_floors(snap, value)}}/>
+            {Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress)}
+            <SubmitBttnfn fn = {() => toggleModal()}/>
         </SafeAreaProvider>
     );
 }
-
-
 
 function FloorSelector(snap) {
     return <View style={{ flex: .7 }}>
@@ -110,9 +117,9 @@ const FloorBttn = ({ label, floor_num, data }) => {
     ]}
     onPress={() => store.cur_floor = floor_num}
   >
-    <Text style={{ color: 'white', fontSize: 22 }}>{label}</Text>
+    <Text style={styles.text_medium}>{label}</Text>
     <TextInput
-      style={{ color: 'white', fontSize: 22, marginLeft: 50 }} 
+      style={[styles.text_medium, {marginLeft: 50}]} 
       value={data.floor_count[floor_num - 1].toString()}
       onChangeText={handleChangeWrapper}
     />
@@ -168,3 +175,52 @@ async function postHeadcounts(formEle){
     alert('An error occurred while making the POST request. Please try again later.')
   }   
 } 
+
+function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
+  const snap = useSnapshot(store);
+  const cur_assign = snap.cur_assign;
+
+  return (
+    <Modal
+      transparent={true}
+      visible={isModalVisible}
+      onRequestClose={toggleModal}
+    >
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+
+        <View style={{ ...styles.overlay, backgroundColor: isModalVisible ? 'rgba(0, 0, 0, 0.7)' : 'transparent' }} />
+
+        <View style={{ backgroundColor: '#25292e', width: '66%', height: '25%', margin: '100', flexDirection: 'column' }}>
+          
+          <View style={{ flex: 1, padding: 5 }}>
+            <Text style={{ color: 'white', fontSize: 22 }}> You are about to submit:</Text>
+          </View>
+
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Text style={{ color: 'white', fontSize: 22 }}> Floor 1: {snap.floor_count[0]} | Floor 2: {snap.floor_count[1]} | Floor 3: {snap.floor_count[2]} | Floor 4: {snap.floor_count[4]} | Floor 5: {snap.floor_count[5]} | </Text>
+          </View>
+
+         
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <TouchableOpacity
+              style={{ flex: 1, color: 'white', backgroundColor: snap.color, margin: 5, justifyContent: 'center', alignItems: 'center' }}
+              onPress={() => handleOkPress()}
+            >
+              <Text style = {{color: 'white'}}> OK </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{ flex: 1, color: 'white', backgroundColor: '#333940', margin: 5, justifyContent: 'center', alignItems: 'center' }}
+              onPress={() => handleCancelPress()}
+            >
+              <Text style = {{color: 'white'}}> Cancel </Text>
+            </TouchableOpacity>
+          </View>
+        
+        </View>
+
+      </View>
+
+    </Modal>
+  );
+}
