@@ -32,6 +32,20 @@ const styles = StyleSheet.create({
       justifyContent: 'center' 
     },
 
+    keybox: { 
+      backgroundColor: '#333940', 
+      marginHorizontal: 10, 
+      flex: 1, 
+      justifyContent: 'flex-end', 
+      alignItems: 'center' 
+    },
+
+    key_title:{
+      color: 'white', 
+      fontSize: 25, 
+      margin: 15
+    },
+    
     searchbox: {
         backgroundColor: '#fff',
         alignItems: 'center',

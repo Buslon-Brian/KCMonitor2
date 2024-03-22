@@ -34,13 +34,13 @@ export default function Keys({navigation}){
             
             <View style = {{backgroundColor: '#25292e', flex: 1}}>
                 <View style = {{flex: .1, justifyContent: 'center'}}> 
-                    <Text style ={{fontSize:25, color: 'white'}}> Select a Key Set</Text>
+                    <Text style ={styles.text_medium}> Select a Key Set</Text>
                 </View>
                 
                 {KeyButtons(handleKeyPress)}
 
                 <View style = {{flex: .4}}>
-                    <Text style = {{ color: 'white', fontSize: 25, marginVertical: 30, marginHorizontal: 10}}> Current: {key} </Text>
+                    <Text style = {[styles.text_medium, {marginVertical: 30, marginHorizontal: 10}]}> Current: {key} </Text>
                     {Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress)}
                 </View>
 
@@ -52,25 +52,27 @@ export default function Keys({navigation}){
 function KeyButtons(handleKeyPress) {
     return <View style={{ flex: .3, flexDirection: 'row' }}>
         <TouchableOpacity
-            style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
+            style={styles.keybox}
             onPress={() => handleKeyPress('Black')}
         >
             <Feather name="key" size={100} color="black" />
-            <Text style={{ color: 'white', fontSize: 22, marginVertical: 15 }}> Black </Text>
+            <Text style={styles.key_title}> Black </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
-            onPress={() => handleKeyPress('Blue')}
+        <TouchableOpacity 
+          style={styles.keybox}
+          onPress={() => handleKeyPress('Blue')}
         >
             <Feather name="key" size={100} color="dodgerblue" />
-            <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Blue </Text>
+            <Text style={styles.key_title}> Blue </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{ backgroundColor: '#333940', marginHorizontal: 10, flex: 1, justifyContent: 'flex-end', alignItems: 'center' }}
-            onPress={() => handleKeyPress('Green')}
+        <TouchableOpacity 
+          style={styles.keybox}
+          onPress={() => handleKeyPress('Green')}
         >
             <Feather name="key" size={100} color="aquamarine" />
-            <Text style={{ color: 'white', fontSize: 25, margin: 15 }}> Green </Text>
+            <Text style={styles.key_title}> Green </Text>
         </TouchableOpacity>
     </View>;
 }

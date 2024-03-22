@@ -35,7 +35,7 @@ const Item = ({ prnt_code }) => (
 function List(data, Item) {
     if(data.length == 0){
         return <View>
-        <Text style = {{color: 'white', fontSize: 25, margin: 25}}> Scanned Printers:</Text>
+        <Text style = {[styles.text_medium, {margin: 25}]}> Scanned Printers:</Text>
         <View style={{ backgroundColor: '#333940', padding: 25, margin: 5 }}>
             <Text style = {{color: 'white'}}>You have not scanned any printers yet!</Text>
         </View>
