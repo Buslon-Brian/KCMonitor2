@@ -1,9 +1,10 @@
 import {View, Text, FlatList, Image, TouchableOpacity, Linking} from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Feather } from '@expo/vector-icons'
 import { useSnapshot } from 'valtio';
 import { store } from '../stores/store';
 import styles from '../components/styles';
-import { Feather } from '@expo/vector-icons'
+import menudata from '../components/menudata';
 
 function MenuScreen({ navigation }) {
   const snap =useSnapshot(store)
@@ -21,61 +22,7 @@ function MenuScreen({ navigation }) {
 }
 
 
-const DATA = [
-  {
-    id: '1',
-    path: 'users',
-    title: 'Headcounts',
-    screen: 'Headcounts',
-  },
-  {
-    id: '2',
-    path: 'camera',
-    title: 'QR Codes',
-    screen: 'QR',
-  },
-  {
-    id: '3',
-    path: 'list',
-    title: 'Property Rounds',
-    screen: 'Property',
-  },
-  {
-    id: '4',
-    path: 'clock',
-    title: 'Hourly Assignments',
-    screen: 'Hourly',
-  },
-  {
-    id: '5',
-    path: 'printer',
-    title: 'Printers',
-    screen: 'Printers',
-  },
-  {
-    id: '6',
-    path: 'key',
-    title: 'Keys',
-    screen: 'Keys',
-  },
-  {
-    id: '7',
-    path: 'tool',
-    title: 'Maintenance Tickets',
-  },
-  {
-    id: '8',
-    path: 'settings',
-    title: 'Settings',
-    screen: 'Settings',
-  },
-  {
-    id: '9',
-    path: 'log-out',
-    title: 'Log Out',
-    screen: 'Login',
-  },
-];
+const DATA = menudata
  
 const Item = ({ title, path, screen, navigation }) => (
   <TouchableOpacity
@@ -85,14 +32,16 @@ const Item = ({ title, path, screen, navigation }) => (
         Linking.openURL('https://unr.teamdynamix.com/TDClient/Requests/ServiceDet?ID=27661').catch((err) =>
           console.error('Error opening URL:', err)
         );
-      } else {
-        // Navigate to screen if no URL
+      } 
+      
+      else {
         navigation.navigate(screen);
       }
     }}
   >
     <Feather name= {path} size={120} color="white" style = {{flex: 1}}/>
-    <Text style={{ color: '#fff', fontSize: 20 }} adjustsFontSizeToFit={true} allowFontScaling={true}>
+    
+    <Text style={styles.text_medium} adjustsFontSizeToFit={true} allowFontScaling={true}>
       {title}
     </Text>
   </TouchableOpacity>
@@ -100,7 +49,7 @@ const Item = ({ title, path, screen, navigation }) => (
 
 function Header(snap) {
   return <View style={[styles.header_bar, {backgroundColor: snap.color}]}>
-    <Text style={{ color: '#fff', fontSize: 25 }}> KC Building Operations </Text>
+    <Text style={styles.text_medium}> KC Building Operations </Text>
   </View>;
 }
 
@@ -111,8 +60,7 @@ function Grid(navigation) {
       renderItem={({ item }) => <Item title={item.title} path={item.path} screen={item.screen} navigation={navigation} />}
       keyExtractor={item => item.id}
       numColumns={3} 
-
-      />
+    />
   </View>;
 }
 

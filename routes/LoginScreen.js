@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {View, Text, TextInput, TouchableOpacity,} from 'react-native';
 import { store } from '../stores/store';
 import styles from '../components/styles';
+import SubmitBttnfn from '../components/SubmitBttn';
 
 function LoginScreen({ navigation }) {
   
@@ -12,8 +13,8 @@ function LoginScreen({ navigation }) {
     return (
       <View style={styles.container}>
     
-        <Text style = {{color: '#fff', fontSize: 25, marginBottom: 15}}>Welcome</Text>
-        <Text style = {{color: '#fff', fontSize: 17, marginBottom: 11}}>Please enter your first and last name:</Text>
+        <Text style = {[styles.text_medium, {marginBottom: 15}]}>Welcome</Text>
+        <Text style = {[styles.text_small, {marginBottom: 11}]}>Please enter your first and last name:</Text>
         
         <TextInput 
         style = {styles.searchbox} 
@@ -28,7 +29,8 @@ function LoginScreen({ navigation }) {
           style = {{backgroundColor: '#333940', margin: 15, paddingVertical:10, paddingHorizontal: 55, alignItems: 'center', marginTop: 35}} 
           onPress={() => validate(text, navigation, setError)} 
         >
-          <Text style = {{color: '#fff', fontSize: 16}}> Continue </Text>
+        
+        <Text style = {styles.text_small}> Continue </Text>
         </TouchableOpacity>
       </View>
     );
@@ -38,8 +40,8 @@ function LoginScreen({ navigation }) {
     return (
       <View style={styles.container}>
     
-        <Text style = {{color: '#fff', fontSize: 25, marginBottom: 15}}>Welcome</Text>
-        <Text style = {{color: '#fff', fontSize: 17, marginBottom: 11}}>Please enter your first and last name:</Text>
+        <Text style = {[styles.text_medium, {marginBottom: 15}]}>Welcome</Text>
+        <Text style = {[styles.text_small, {marginBottom: 11}]}>Please enter your first and last name:</Text>
         
         <TextInput 
         style = {styles.searchbox} 
@@ -50,13 +52,13 @@ function LoginScreen({ navigation }) {
         onSubmitEditing={()=> validate(text, navigation, setError)}
         />
         
-        <Text style = {{color: 'red', fontSize:17}}> Error: Invalid firstname or lastname</Text>
+        <Text style = {[styles.text_small, {color: 'red'}]}> Error: Invalid firstname or lastname</Text>
         
         <TouchableOpacity 
           style = {{backgroundColor: '#333940', margin: 15, paddingVertical:10, paddingHorizontal: 55, alignItems: 'center', marginTop: 35}} 
           onPress={() => validate(text, navigation, setError)} 
         >
-          <Text style = {{color: '#fff', fontSize: 16}}> Continue </Text>
+          <Text style = {styles.text_small}> Continue </Text>
         </TouchableOpacity>
       </View>
     )
