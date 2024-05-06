@@ -10,7 +10,7 @@ npm run start
 Expo Documentation: https://docs.expo.dev/get-started/installation/  
 React Native Documentation: https://reactnative.dev/docs/getting-started  
 Valtio State Management: https://jotai.org/docs/extensions/valtio  
-App Documentation [https://docs.google.com/document/d/1IvXzgOnOoVEK38eZ10hoxfdnaTzqSxFETYW_DbD8SUo/edit?usp=sharing]
+App Documentation https://docs.google.com/document/d/1IvXzgOnOoVEK38eZ10hoxfdnaTzqSxFETYW_DbD8SUo/edit?usp=sharing
 
 
 
