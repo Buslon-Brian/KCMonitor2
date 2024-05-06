@@ -74,14 +74,27 @@ function List(data, Item) {
 
 async function submit_props(snap, store) {
 
+        /*
     fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
         method: "POST",
         body: JSON.stringify({
             "text": `${snap.username} scanned ${snap.prop_scanned.length} QR Codes`
         })
     });
+    */
 
-    
+    const log = await fetch(process.env.EXPO_PUBLIC_BOTURL, {
+        method: "POST",
+        body: JSON.stringify({
+          'target': 'property',
+          'msg': `${snap.username} scanned ${snap.prop_scanned.length} QR Codes`,
+        })
+    })
+      
+    const output = await log.text()
+    console.log(output)
+
+      /*
     store.prop_codes.push(...snap.prop_scanned);
     store.prop_codes = snap.prop_codes.filter((item, index, array) => {
         return array.indexOf(item) === index;
@@ -89,7 +102,7 @@ async function submit_props(snap, store) {
     store.prop_scanned = []
     
     
-    const res = await fetch(process.env.EXPO_PUBLIC_SHEETSURL,{
+    const res = await fetch(process.env.EXPO_PUBLIC_PROPTOKEN,{
         method: "POST",
     
         body: JSON.stringify({
@@ -100,5 +113,6 @@ async function submit_props(snap, store) {
   
     console.log(await res.text())
     store.prop_datatag = []
+    */
     
 }

@@ -53,7 +53,7 @@ function List(data, Item) {
 }
 
 async function submit_prnt(snap, store) {
-  fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
+  fetch(process.env.EXPO_PUBLIC_PRNTOKEN, {
                   method: "POST",
                   body: JSON.stringify({
                       "text": `${snap.username} scanned ${snap.prnt_scanned.length} printers`

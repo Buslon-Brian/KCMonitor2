@@ -8,6 +8,7 @@ import KeepState from '../components/KeepState';
 import styles from '../components/styles';
 import Header_c from '../components/Header';
 import SubmitBttnfn from '../components/SubmitBttn';
+import DropDownPicker from 'react-native-dropdown-picker';
 import moment from 'moment';
 
 export default function Headcounts({ navigation }){
@@ -18,7 +19,7 @@ export default function Headcounts({ navigation }){
 
     const handleOkPress = () => {
       toggleModal()
-      submit_floors(snap)
+      submit_floors(snap, value)
     }
     const handleCancelPress = () => {toggleModal()}
     
@@ -55,13 +56,46 @@ function FloorSelector(snap) {
 }
 
 function IteratorBttns(value, setValue, snap) {
+  const [open, setOpen] = useState(false)
+  const [items, setItems] = useState([
+  {label: '8AM', value: '8:00AM'},
+  {label: '9AM', value: '9:00AM'},
+  {label: '10AM', value: '10:00AM'},
+  {label: '11AM', value: '11:00AM'},
+  {label: '12PM', value: '12:00PM'},
+  {label: '1PM', value: '1:00PM'},
+  {label: '2PM', value: '2:00PM'},
+  {label: '3PM', value: '3:00PM'},
+  {label: '4PM', value: '4:00PM'},
+  {label: '5PM', value: '5:00PM'},
+  {label: '6PM', value: '6:00PM'},
+  {label: '7PM', value: '7:00PM'},
+  {label: '8PM', value: '8:00PM'},
+  {label: '9PM', value: '9:00PM'},
+  {label: '10PM', value: '10:00PM'},
+  {label: '11PM', value: '11:00PM'},
+  {label: '12AM', value: '12:00AM'},
+  {label: '1AM', value: '1:00AM'},
+  ])
     return (
     <>
         
         <View style ={{flex: .2, marginHorizontal: '1%', marginBottom: '.5%', marginTop: '1%', zIndex: 2}}>
-          <View style = {{flex: 1, backgroundColor:'#333940', justifyContent: 'center', alignItems: 'center'}}>
-            <Text style = {{color: 'white', fontSize: 22}}> {moment().format('h:mm A')} </Text>
-          </View>
+          <DropDownPicker
+            placeholder = "Select a time"
+            listMode = "MODAL"
+            modalAnimationType="slide"
+            modalTitle= "Select a time"
+            theme = "DARK"
+            style = {{backgroundColor: '#25292e'}}
+            modalContentContainerStyle={{backgroundColor: "#25292e",}}
+            open={open}
+            value={value}
+            items={items}
+            setOpen={setOpen}
+            setValue={setValue}
+            setItems={setItems}
+          />
         </View>
     
         <TouchableOpacity 
@@ -126,12 +160,12 @@ const FloorBttn = ({ label, floor_num, data }) => {
   </TouchableOpacity>
 )}
 
-function submit_floors(snap){
+function submit_floors(snap, value){
     
     const formEle = {
         "scriptfn": "post_count",
-        "Timestamp": moment().format('L'),
-        "Hour": moment().format('hh a'),
+        "Timestamp": moment().format('L, h:mm:ss a'),
+        "Hour": value,
         "Floor 1": check(snap.floor_count[0]),
         "Floor 2": check(snap.floor_count[1]),
         "Floor 3": check(snap.floor_count[2]),
@@ -197,7 +231,7 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
           </View>
 
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text style={{ color: 'white', fontSize: 22 }}> Floor 1: {snap.floor_count[0]} | Floor 2: {snap.floor_count[1]} | Floor 3: {snap.floor_count[2]} | Floor 4: {snap.floor_count[4]} | Floor 5: {snap.floor_count[5]} | </Text>
+            <Text style={{ color: 'white', fontSize: 22 }}> Floor 1: {snap.floor_count[0]} | Floor 2: {snap.floor_count[1]} | Floor 3: {snap.floor_count[2]} | Floor 4: {snap.floor_count[3]} | Floor 5: {snap.floor_count[4]} | </Text>
           </View>
 
          

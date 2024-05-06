@@ -130,7 +130,7 @@ function Popup(isModalVisible, toggleModal, handleOkPress, handleCancelPress) {
   
 function log_assign(snap) {
   console.log("exec")
-  fetch(process.env.EXPO_PUBLIC_SLACKTOKEN, {
+  fetch(process.env.EXPO_PUBLIC_HRLYTOKEN, {
     method: "POST",
     body: JSON.stringify({
      "text": `${snap.username} is on ${snap.cur_assign}`

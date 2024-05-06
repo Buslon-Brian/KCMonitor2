@@ -33,6 +33,11 @@ const Item = ({ title, path, screen, navigation }) => (
           console.error('Error opening URL:', err)
         );
       } 
+
+      else if (title === 'Log Out'){
+        store.username = ""
+        navigation.navigate(screen)
+      }
       
       else {
         navigation.navigate(screen);
@@ -41,7 +46,7 @@ const Item = ({ title, path, screen, navigation }) => (
   >
     <Feather name= {path} size={120} color="white" style = {{flex: 1}}/>
     
-    <Text style={styles.text_medium} adjustsFontSizeToFit={true} allowFontScaling={true}>
+    <Text style={[styles.text_medium,{fontSize:20}]} adjustsFontSizeToFit={true} allowFontScaling={true}>
       {title}
     </Text>
   </TouchableOpacity>
