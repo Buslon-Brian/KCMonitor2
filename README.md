@@ -1,5 +1,5 @@
 # KCMonitor2 Application
-The KCMonitor2 application provides a simple set of functionalities that facilitate the identifying and reporting process by sending observations to a database- in this case google sheets, or the appropriate department for later review. 
+The KCMonitor2 application provides a simple set of functionalities for the Building Operations Department that facilitate the identifying and reporting process by sending observations to a database- in this case google sheets, for later review. 
 
 ## Installation
 install nodejs  
